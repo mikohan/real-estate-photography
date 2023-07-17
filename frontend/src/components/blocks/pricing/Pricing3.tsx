@@ -22,15 +22,13 @@ const Pricing3: FC = () => {
       </div>
 
       <div className="col-lg-7 offset-lg-1 pricing-wrapper">
-        <div className="pricing-switcher-wrapper switcher justify-content-start justify-content-lg-end">
+        {/* <div className="pricing-switcher-wrapper switcher justify-content-start justify-content-lg-end">
           <p className="mb-0 pe-3">Monthly</p>
-
           <Switch value={activeYearly} onChange={setActiveYearly} />
-
           <p className="mb-0 ps-3">
             Yearly <span className="text-red">(Save 30%)</span>
           </p>
-        </div>
+        </div> */}
 
         <div className="row gy-6 position-relative mt-5">
           <div

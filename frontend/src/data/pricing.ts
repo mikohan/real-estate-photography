@@ -6,10 +6,10 @@ import ShoppingBasket from 'icons/lineal/ShoppingBasket';
 // used in the pricing-1, pricing-3 block
 export const pricingList1 = [
   {
-    monthlyPrice: 19,
+    monthlyPrice: 149,
     yearlyPrice: 199,
-    planName: 'Premium',
-    features: ['5 Projects', '100K API Access', '200MB Storage', 'Weekly Reports', '7/24 Support']
+    planName: 'Basic',
+    features: ['25 Exterior & Interior Photos', '1-2 minute Video Tour']
   },
   {
     monthlyPrice: 49,
