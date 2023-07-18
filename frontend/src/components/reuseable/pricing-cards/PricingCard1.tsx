@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import Price from './Price';
 import NextLink from '../links/NextLink';
+import { urls } from 'utils/urls';
 
 // ================================================================
 type PricingCard1Props = {
@@ -19,6 +20,7 @@ const PricingCard1: FC<PricingCard1Props> = (props) => {
 
   const yearClasses = activeYearly ? 'price-show' : 'price-hide price-hidden';
   const monthClasses = !activeYearly ? 'price-show' : 'price-hide price-hidden';
+  console.log(planName);
 
   return (
     <div className="pricing card shadow-lg">
@@ -42,7 +44,7 @@ const PricingCard1: FC<PricingCard1Props> = (props) => {
         </ul>
 
         <NextLink
-          href="#"
+          href={urls.prices(planName)}
           title="Choose Plan"
           className={`btn btn-primary ${roundedButton ? 'rounded' : 'rounded-pill'}`}
         />

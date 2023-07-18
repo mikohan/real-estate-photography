@@ -20,7 +20,7 @@ export const pricingList1 = [
       '360 Virtual Tour',
       '1-2 Minute Video',
       '10 Drone Photos',
-      'Marketing Kit'
+      '2D Floor Plan'
     ]
   }
 ];

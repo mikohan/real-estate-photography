@@ -5,7 +5,7 @@ const linkList = [
   { id: 1, title: 'Home', to: 'home' },
   { id: 2, title: 'Services', to: 'services' },
   { id: 3, title: 'Portfolio', to: 'portfolio' },
-  { id: 4, title: 'Testimonials', to: 'testimonials' },
+  { id: 4, title: 'Why Us?', to: 'whyus' },
   { id: 5, title: 'About', to: 'about' },
   { id: 6, title: 'Pricing', to: 'pricing' }
 ];
