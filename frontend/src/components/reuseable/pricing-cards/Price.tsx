@@ -16,7 +16,7 @@ const Price: FC<PriceProps> = (props) => {
     <div className={`price justify-content-start ${classes}`}>
       <span className="price-currency">{currency}</span>
       <span className="price-value">{value}</span>
-      <span className="price-duration">{duration}</span>
+      {/* <span className="price-duration">{duration}</span> */}
     </div>
   );
 };

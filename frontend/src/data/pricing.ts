@@ -12,10 +12,16 @@ export const pricingList1 = [
     features: ['25 Exterior & Interior Photos', '1-2 minute Video Tour']
   },
   {
-    monthlyPrice: 49,
+    monthlyPrice: 549,
     yearlyPrice: 499,
     planName: 'Corporate',
-    features: ['20 Projects', '300K API Access', '500MB Storage', 'Weekly Reports', '7/24 Support']
+    features: [
+      '40 Exterior & Interior Photos',
+      '360 Virtual Tour',
+      '1-2 Minute Video',
+      '10 Drone Photos',
+      'Marketing Kit'
+    ]
   }
 ];
 
