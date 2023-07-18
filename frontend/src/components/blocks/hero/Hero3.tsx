@@ -20,7 +20,13 @@ const Hero3: FC = () => {
                   options={{
                     loop: true,
                     autoStart: true,
-                    strings: ['customer satisfaction', 'business needs', 'creative ideas']
+                    strings: [
+                      'Real Estate Photography',
+                      'Aerial/Drone Photography',
+                      '360 Virtual Tours',
+                      'Virtual Staging',
+                      'Real Estate Marketing Sevices'
+                    ]
                   }}
                 />
               </span>
