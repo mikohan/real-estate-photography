@@ -14,7 +14,7 @@ const Hero3: FC = () => {
         <div className="row gx-0 gy-10 align-items-center">
           <div className="col-lg-6">
             <h1 className="display-1 text-white mb-4" style={slideInDownAnimate('600ms')}>
-              Sandbox focuses on <br />
+              We focuse on <br />
               <span className="text-primary text-nowrap">
                 <Typewriter
                   options={{
