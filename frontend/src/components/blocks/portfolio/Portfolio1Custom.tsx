@@ -57,6 +57,7 @@ const Portfolio1: FC<PropsInterface> = ({ projectImages }) => {
 
   return (
     <div className="container-fluid px-md-6">
+      <h2 className="fs-16 text-uppercase text-line text-primary mb-3">Real Estate Photography</h2>
       <div className="swiper-container blog grid-view mb-17 mb-md-19">
         <Carousel grabCursor breakpoints={carouselBreakpoints}>
           {projectImages.map((item: ProjectImages, i: number) => (

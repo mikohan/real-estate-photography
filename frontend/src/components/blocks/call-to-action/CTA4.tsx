@@ -5,7 +5,7 @@ const CTA4: FC = () => {
   return (
     <section
       className="wrapper image-wrapper bg-image bg-overlay"
-      style={{ backgroundImage: 'url(/img/photos/bg1.jpg)' }}
+      style={{ backgroundImage: 'url(/img/photos/apt1_2500.jpg)' }}
     >
       <div className="container py-18">
         <div className="row">
