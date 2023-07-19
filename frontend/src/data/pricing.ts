@@ -14,7 +14,7 @@ export const pricingList1 = [
   {
     monthlyPrice: 549,
     yearlyPrice: 499,
-    planName: 'Corporate',
+    planName: 'Advanced',
     features: [
       '40 Exterior & Interior Photos',
       '360 Virtual Tour',

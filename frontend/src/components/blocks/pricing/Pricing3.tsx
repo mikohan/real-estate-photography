@@ -12,10 +12,9 @@ const Pricing3: FC = () => {
     <div className="row gy-6 mb-16 mb-md-18">
       <div className="col-lg-4">
         <h2 className="fs-16 text-uppercase text-line text-primary mt-lg-18 mb-3">Our Pricing</h2>
-        <h3 className="display-4 mb-3">We offer great and premium prices.</h3>
+        <h3 className="display-4 mb-3">We offer base and advance price packages.</h3>
         <p>
-          Enjoy a <NextLink title="free 30-day trial" href="#" className="hover" /> and experience the full service. No
-          credit card required!
+          You can choose addons on <NextLink title="Go to Prices" href="#" className="hover" /> page.
         </p>
 
         <NextLink href="#" title="See All Prices" className="btn btn-primary rounded mt-2" />

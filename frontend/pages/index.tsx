@@ -17,18 +17,31 @@ import { Testimonial2 } from 'components/blocks/testimonial';
 import NextLink from 'components/reuseable/links/NextLink';
 import PageProgress from 'components/common/PageProgress';
 import { Portfolio1Custom } from 'components/blocks/portfolio';
-import { PropsInterface, ProjectImages } from 'components/blocks/portfolio/Portfolio1Custom';
 import { IService, Datum } from 'interfaces/IServices';
+import { IProject, ProjectDatum } from 'interfaces/IProjects';
+import Plyr from 'plyr-react';
+import { Portfolio8 } from 'components/blocks/portfolio';
+import Portfolio8Videos from 'components/blocks/portfolio/Portfolio8Videos';
 
 type Props = {
-  port1: any;
+  port1: IProject;
   services: IService;
+  drone: IProject;
+  video: IProject;
 };
 
 const Demo3: NextPage<Props> = (props) => {
   // console.log(props.port1.data.attributes.photo.data);
-  const imgs1: ProjectImages[] = props.port1.data.attributes.photo.data;
+  const imgs1: ProjectDatum[] = props.port1.data.attributes.photo!.data;
   const serv: Datum[] = props.services.data;
+  const drone_img: ProjectDatum[] = props.drone.data.attributes.photo!.data;
+  const video_img: ProjectDatum[] = props.video.data.attributes.photo!.data;
+  const video_video: ProjectDatum[] = props.video.data.attributes.video!.data;
+
+  // const serviceRE = 'Real Estate Photography';
+  const serviceRE: string = props.port1.data.attributes.title;
+  const serviceDrone: string = props.drone.data.attributes.title;
+  const serviceVideo: string = props.video.data.attributes.title;
   return (
     <Fragment>
       <PageProgress />
@@ -54,7 +67,11 @@ const Demo3: NextPage<Props> = (props) => {
 
             <section id="portfolio">
               {/* ========== how it works section ========== */}
-              <Portfolio1Custom projectImages={imgs1} />
+              <Portfolio1Custom projectImages={imgs1} serviceTitle={serviceRE} />
+              <Portfolio1Custom projectImages={drone_img} serviceTitle={serviceDrone} />
+            </section>
+            <section id="video">
+              <Portfolio8Videos projectVideos={video_video} serviceTitle={serviceVideo} />
             </section>
 
             {/* ========== why choose us section ========== */}
@@ -86,7 +103,13 @@ export async function getStaticProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
   const res1 = await fetch('http://localhost:1337/api/projects/1?populate=photo&populate=images');
-  const port1: Port = await res1.json();
+  const port1: IProject = await res1.json();
+
+  const res_drone = await fetch('http://localhost:1337/api/projects/2?populate=photo&populate=images');
+  const drone: IProject = await res_drone.json();
+
+  const res_video = await fetch('http://localhost:1337/api/projects/3/?populate=photo&populate=video');
+  const video: IProject = await res_video.json();
 
   //Services fetching starts here
   const res2 = await fetch('http://localhost:1337/api/services/?populate=photo&populate=image');
@@ -95,14 +118,12 @@ export async function getStaticProps() {
   // By returning { props: { posts } }, the Blog component
   // will receive `posts` as a prop at build time
 
-  type Port = {
-    data: any;
-  };
-
   return {
     props: {
       port1,
-      services
+      services,
+      drone,
+      video
     }
   };
 }

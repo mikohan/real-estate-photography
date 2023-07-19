@@ -1,53 +1,15 @@
 import { FC } from 'react';
 import Image from 'next/image';
 import Carousel from 'components/reuseable/Carousel';
+import { IProject, ProjectDatum } from 'interfaces/IProjects';
 // -------- data -------- //
 import { portfolioList1 } from 'data/portfolio';
 
 export interface PropsInterface {
-  projectImages: ProjectImages[];
+  projectImages: ProjectDatum[];
+  serviceTitle: string;
 }
-export interface ProjectImages {
-  id: number;
-  attributes: Attributes;
-}
-export interface Attributes {
-  name: string;
-  alternativeText: string;
-  caption?: null;
-  width: number;
-  height: number;
-  formats: Formats;
-  hash: string;
-  ext: string;
-  mime: string;
-  size: number;
-  url: string;
-  previewUrl?: null;
-  provider: string;
-  provider_metadata?: null;
-  createdAt: string;
-  updatedAt: string;
-}
-export interface Formats {
-  thumbnail: ThumbnailOrSmallOrLargeOrMedium;
-  small: ThumbnailOrSmallOrLargeOrMedium;
-  large: ThumbnailOrSmallOrLargeOrMedium;
-  medium: ThumbnailOrSmallOrLargeOrMedium;
-}
-export interface ThumbnailOrSmallOrLargeOrMedium {
-  name: string;
-  hash: string;
-  ext: string;
-  mime: string;
-  path?: null;
-  width: number;
-  height: number;
-  size: number;
-  url: string;
-}
-
-const Portfolio1: FC<PropsInterface> = ({ projectImages }) => {
+const Portfolio1: FC<PropsInterface> = ({ projectImages, serviceTitle }) => {
   const carouselBreakpoints = {
     0: { slidesPerView: 1 },
     768: { slidesPerView: 2 },
@@ -56,10 +18,15 @@ const Portfolio1: FC<PropsInterface> = ({ projectImages }) => {
 
   return (
     <div className="container-fluid px-md-6">
-      <h2 className="fs-16 text-uppercase text-line text-primary mb-3">Real Estate Photography</h2>
       <div className="swiper-container blog grid-view mb-17 mb-md-19">
+        <div className="row mb-8 text-center">
+          <div className="col-lg-9 col-xl-8 col-xxl-7 mx-auto">
+            <h2 className="fs-16 text-uppercase text-primary mb-3">{serviceTitle}</h2>
+            <h3 className="display-4">Check out some of our awesome projects with creative ideas and great design.</h3>
+          </div>
+        </div>
         <Carousel grabCursor breakpoints={carouselBreakpoints}>
-          {projectImages.map((item: ProjectImages, i: number) => (
+          {projectImages.map((item: ProjectDatum, i: number) => (
             <figure className="rounded" key={item.id}>
               <Image
                 width={900}
