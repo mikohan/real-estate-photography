@@ -11,11 +11,8 @@ const CTA4: FC = () => {
         <div className="row">
           <div className="col-lg-8">
             <h2 className="fs-16 text-uppercase text-white mb-3 text-line">Join Our Community</h2>
-            <h3 className="display-4 mb-5 mb-6 text-white pe-xxl-18">
-              We are trusted by over 5000+ clients. Join them by using our services and grow your business.
-            </h3>
-
-            <NextLink href="#" title="Join Us" className="btn btn-white rounded mb-0 text-nowrap" />
+            <h3 className="display-4 mb-5 mb-6 text-white pe-xxl-18">We just will make your life easier.</h3>
+            <NextLink href="#" title="Contact Us" className="btn btn-white rounded mb-0 text-nowrap" />
           </div>
         </div>
       </div>

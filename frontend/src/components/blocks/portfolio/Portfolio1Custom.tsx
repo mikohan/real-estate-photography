@@ -53,7 +53,6 @@ const Portfolio1: FC<PropsInterface> = ({ projectImages }) => {
     768: { slidesPerView: 2 },
     992: { slidesPerView: 3 }
   };
-  console.log(projectImages);
 
   return (
     <div className="container-fluid px-md-6">

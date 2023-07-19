@@ -109,6 +109,7 @@ export const serviceList3 = [
     linkUrl: '#',
     title: '24/7 Support',
     icon: 'uil-phone-volume',
+    // <i className="uil uil-raindrops-alt"></i>
     description: `Nulla vitae elit libero, a pharetra augue. Donec id elit non mi porta gravida at eget metus. Cras justo.`
   },
   {

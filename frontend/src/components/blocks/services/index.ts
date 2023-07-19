@@ -2,6 +2,7 @@ import Services1 from './Services1';
 import Services2 from './Services2';
 import Services3 from './Services3';
 import Services4 from './Services4';
+import Services4Custom from './Services4Custom';
 import Services5 from './Services5';
 import Services6 from './Services6';
 import Services7 from './Services7';
@@ -40,6 +41,7 @@ export {
   Services2,
   Services3,
   Services4,
+  Services4Custom,
   Services5,
   Services6,
   Services7,

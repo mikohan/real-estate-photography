@@ -11,24 +11,24 @@ import { Footer5 } from 'components/blocks/footer';
 import { Contact1 } from 'components/blocks/contact';
 import { Pricing3 } from 'components/blocks/pricing';
 import { Process3 } from 'components/blocks/process';
-import { Services4 } from 'components/blocks/services';
+import { Services4, Services4Custom } from 'components/blocks/services';
 import { CTA4 } from 'components/blocks/call-to-action';
 import { Testimonial2 } from 'components/blocks/testimonial';
 import NextLink from 'components/reuseable/links/NextLink';
 import PageProgress from 'components/common/PageProgress';
 import { Portfolio1Custom } from 'components/blocks/portfolio';
 import { PropsInterface, ProjectImages } from 'components/blocks/portfolio/Portfolio1Custom';
+import { IService, Datum } from 'interfaces/IServices';
 
 type Props = {
   port1: any;
+  services: IService;
 };
 
 const Demo3: NextPage<Props> = (props) => {
   // console.log(props.port1.data.attributes.photo.data);
   const imgs1: ProjectImages[] = props.port1.data.attributes.photo.data;
-  console.log(imgs1);
-  // data.attributes.photo.data
-  // [0].attributes.formats.small
+  const serv: Datum[] = props.services.data;
   return (
     <Fragment>
       <PageProgress />
@@ -49,7 +49,7 @@ const Demo3: NextPage<Props> = (props) => {
 
             {/* ========== what we do section ========== */}
             <section id="services">
-              <Services4 />
+              <Services4Custom services={serv} />
             </section>
 
             <section id="portfolio">
@@ -67,11 +67,6 @@ const Demo3: NextPage<Props> = (props) => {
 
         {/* ========== case studies section ========== */}
         <Blog1 />
-
-        {/* ========== company facts section ========== */}
-        <section id="whyus">
-          <Facts1 />
-        </section>
 
         <section className="wrapper bg-light angled upper-end lower-start">
           <div className="container py-16 py-md-18 position-relative">
@@ -93,6 +88,10 @@ export async function getStaticProps() {
   const res1 = await fetch('http://localhost:1337/api/projects/1?populate=photo&populate=images');
   const port1: Port = await res1.json();
 
+  //Services fetching starts here
+  const res2 = await fetch('http://localhost:1337/api/services/?populate=photo&populate=image');
+  const services: IService = await res2.json();
+
   // By returning { props: { posts } }, the Blog component
   // will receive `posts` as a prop at build time
 
@@ -102,7 +101,8 @@ export async function getStaticProps() {
 
   return {
     props: {
-      port1
+      port1,
+      services
     }
   };
 }
