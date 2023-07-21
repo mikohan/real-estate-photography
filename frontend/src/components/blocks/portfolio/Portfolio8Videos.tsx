@@ -23,7 +23,7 @@ const Portfolio8Videos: FC<IProps> = ({ projectVideos, serviceTitle }) => {
           </div>
         </div>
 
-        <div className="grid grid-view projects-masonry">
+        <div className="grid grid-view projects-masonry mb-10">
           <div className="row gx-md-8 gy-10 gy-md-13 isotope">
             {projectVideos.map((item: ProjectDatum) => (
               <div className="project item col-md-6 col-xl-4 product" key={item.id}>

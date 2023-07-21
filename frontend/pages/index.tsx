@@ -19,15 +19,15 @@ import PageProgress from 'components/common/PageProgress';
 import { Portfolio1Custom } from 'components/blocks/portfolio';
 import { IService, Datum } from 'interfaces/IServices';
 import { IProject, ProjectDatum } from 'interfaces/IProjects';
-import Plyr from 'plyr-react';
-import { Portfolio8 } from 'components/blocks/portfolio';
 import Portfolio8Videos from 'components/blocks/portfolio/Portfolio8Videos';
+import { IPrice, IPriceDatum } from 'interfaces/IPrice';
 
 type Props = {
   port1: IProject;
   services: IService;
   drone: IProject;
   video: IProject;
+  price: IPrice;
 };
 
 const Demo3: NextPage<Props> = (props) => {
@@ -37,6 +37,9 @@ const Demo3: NextPage<Props> = (props) => {
   const drone_img: ProjectDatum[] = props.drone.data.attributes.photo!.data;
   const video_img: ProjectDatum[] = props.video.data.attributes.photo!.data;
   const video_video: ProjectDatum[] = props.video.data.attributes.video!.data;
+  const prices: IPriceDatum[] = props.price.data;
+  const rEPrice = prices[0];
+  console.log(prices);
 
   // const serviceRE = 'Real Estate Photography';
   const serviceRE: string = props.port1.data.attributes.title;
@@ -115,6 +118,9 @@ export async function getStaticProps() {
   const res2 = await fetch('http://localhost:1337/api/services/?populate=photo&populate=image');
   const services: IService = await res2.json();
 
+  //Prices fetching starts here
+  const price_res = await fetch('http://localhost:1337/api/prices?populate=thumbnail');
+  const price: IPrice = await price_res.json();
   // By returning { props: { posts } }, the Blog component
   // will receive `posts` as a prop at build time
 
@@ -123,7 +129,8 @@ export async function getStaticProps() {
       port1,
       services,
       drone,
-      video
+      video,
+      price
     }
   };
 }

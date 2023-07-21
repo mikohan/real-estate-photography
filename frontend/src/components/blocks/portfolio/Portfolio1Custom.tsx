@@ -4,12 +4,14 @@ import Carousel from 'components/reuseable/Carousel';
 import { IProject, ProjectDatum } from 'interfaces/IProjects';
 // -------- data -------- //
 import { portfolioList1 } from 'data/portfolio';
+import { IPriceDatum } from 'interfaces/IPrice';
 
 export interface PropsInterface {
   projectImages: ProjectDatum[];
   serviceTitle: string;
+  priceUnit?: IPriceDatum;
 }
-const Portfolio1: FC<PropsInterface> = ({ projectImages, serviceTitle }) => {
+const Portfolio1: FC<PropsInterface> = ({ projectImages, serviceTitle, priceUnit }) => {
   const carouselBreakpoints = {
     0: { slidesPerView: 1 },
     768: { slidesPerView: 2 },
@@ -18,7 +20,7 @@ const Portfolio1: FC<PropsInterface> = ({ projectImages, serviceTitle }) => {
 
   return (
     <div className="container-fluid px-md-6">
-      <div className="swiper-container blog grid-view mb-17 mb-md-19">
+      <div className="swiper-container blog grid-view mb-11 mb-md-12">
         <div className="row mb-8 text-center">
           <div className="col-lg-9 col-xl-8 col-xxl-7 mx-auto">
             <h2 className="fs-16 text-uppercase text-primary mb-3">{serviceTitle}</h2>
