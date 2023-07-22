@@ -18,12 +18,12 @@ const Portfolio8Videos: FC<IProps> = ({ projectVideos, serviceTitle }) => {
       <div className="container">
         <div className="row mb-8 text-center">
           <div className="col-lg-9 col-xl-8 col-xxl-7 mx-auto">
-            <h2 className="fs-16 text-uppercase text-primary mb-3">Our Projects</h2>
+            <h2 className="fs-16 text-uppercase text-primary mb-3">Real Estate Videos</h2>
             <h3 className="display-4">Check out some of our awesome projects with creative ideas and great design.</h3>
           </div>
         </div>
 
-        <div className="grid grid-view projects-masonry mb-10">
+        <div className="grid grid-view projects-masonry">
           <div className="row gx-md-8 gy-10 gy-md-13 isotope">
             {projectVideos.map((item: ProjectDatum) => (
               <div className="project item col-md-6 col-xl-4 product" key={item.id}>

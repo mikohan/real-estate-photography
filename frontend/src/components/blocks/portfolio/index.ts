@@ -1,5 +1,6 @@
 import Portfolio1 from './Portfolio1';
 import Portfolio1Custom from './Portfolio1Custom';
+import Portfolio1Custom360 from './Portfolio1Custom360';
 import Portfolio2 from './Portfolio2';
 import Portfolio3 from './Portfolio3';
 import Portfolio4 from './Portfolio4';
@@ -20,6 +21,7 @@ import Portfolio17 from './Portfolio17';
 export {
   Portfolio1,
   Portfolio1Custom,
+  Portfolio1Custom360,
   Portfolio2,
   Portfolio3,
   Portfolio4,

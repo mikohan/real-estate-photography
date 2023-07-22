@@ -24,6 +24,8 @@ import { IPrice, IPriceDatum } from 'interfaces/IPrice';
 import { ICompany, PurpleAttributes } from 'interfaces/ICompany';
 import { ISocial, ISocialDatum } from 'interfaces/ISocial';
 import Footer5Custom from 'components/blocks/footer/Footer5Custom';
+import { IMediaSet } from 'interfaces/IMediaSet';
+import { Portfolio1Custom360 } from 'components/blocks/portfolio';
 
 type Props = {
   port1: IProject;
@@ -33,6 +35,7 @@ type Props = {
   price?: IPrice;
   company: ICompany;
   social: ISocial;
+  panorama: IMediaSet;
 };
 
 const Demo3: NextPage<Props> = (props) => {
@@ -46,7 +49,9 @@ const Demo3: NextPage<Props> = (props) => {
   const rEPrice = prices[0];
   const company: PurpleAttributes = props.company.data.attributes;
   const social: ISocialDatum[] = props.social.data;
-  console.log(company);
+  const mediaSet: IMediaSet = props.panorama;
+  //data.attributes.media.data
+  console.log(mediaSet);
 
   // const serviceRE = 'Real Estate Photography';
   const serviceRE: string = props.port1.data.attributes.title;
@@ -82,6 +87,9 @@ const Demo3: NextPage<Props> = (props) => {
             </section>
             <section id="video">
               <Portfolio8Videos projectVideos={video_video} serviceTitle={serviceVideo} />
+            </section>
+            <section id="drone-tours">
+              <Portfolio1Custom360 projectImages={mediaSet} />
             </section>
 
             {/* ========== why choose us section ========== */}
@@ -135,6 +143,10 @@ export async function getStaticProps() {
 
   const social_res = await fetch('http://localhost:1337/api/social-medias');
   const social: ISocial = await social_res.json();
+  // Getting panorama data
+
+  const panorama_res = await fetch('http://localhost:1337/api/images/1?populate=media');
+  const panorama: IMediaSet = await panorama_res.json();
 
   // By returning { props: { posts } }, the Blog component
   // will receive `posts` as a prop at build time
@@ -147,7 +159,8 @@ export async function getStaticProps() {
       video,
       price,
       company,
-      social
+      social,
+      panorama
     }
   };
 }

@@ -24,6 +24,7 @@
     "react": "18.2.0",
     "react-countup": "^6.4.1",
     "react-dom": "18.2.0",
+    "react-photo-sphere-viewer": "^3.3.5-psv5.1.4",
     "react-scroll": "^1.8.9",
     "react-syntax-highlighter": "^15.5.0",
     "scrollcue": "^2.0.0",

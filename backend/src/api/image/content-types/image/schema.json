@@ -4,7 +4,7 @@
   "info": {
     "singularName": "image",
     "pluralName": "images",
-    "displayName": "image",
+    "displayName": "mediaSet",
     "description": ""
   },
   "options": {
@@ -15,9 +15,9 @@
     "title": {
       "type": "string"
     },
-    "image": {
+    "media": {
       "type": "media",
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "allowedTypes": [
         "images",
