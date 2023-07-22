@@ -21,6 +21,8 @@ import { IService, Datum } from 'interfaces/IServices';
 import { IProject, ProjectDatum } from 'interfaces/IProjects';
 import Portfolio8Videos from 'components/blocks/portfolio/Portfolio8Videos';
 import { IPrice, IPriceDatum } from 'interfaces/IPrice';
+import { ICompany, PurpleAttributes } from 'interfaces/ICompany';
+import Footer5Custom from 'components/blocks/footer/Footer5Custom';
 
 type Props = {
   port1: IProject;
@@ -28,6 +30,7 @@ type Props = {
   drone: IProject;
   video: IProject;
   price: IPrice;
+  company: ICompany;
 };
 
 const Demo3: NextPage<Props> = (props) => {
@@ -39,7 +42,8 @@ const Demo3: NextPage<Props> = (props) => {
   const video_video: ProjectDatum[] = props.video.data.attributes.video!.data;
   const prices: IPriceDatum[] = props.price.data;
   const rEPrice = prices[0];
-  console.log(prices);
+  const company: PurpleAttributes = props.company.data.attributes;
+  console.log(company);
 
   // const serviceRE = 'Real Estate Photography';
   const serviceRE: string = props.port1.data.attributes.title;
@@ -91,13 +95,13 @@ const Demo3: NextPage<Props> = (props) => {
         <section className="wrapper bg-light angled upper-end lower-start">
           <div className="container py-16 py-md-18 position-relative">
             {/* ========== contact section ========== */}
-            <Contact1 />
+            <Contact1 company={company} />
           </div>
         </section>
       </main>
 
       {/* ========== footer section ========== */}
-      <Footer5 />
+      <Footer5Custom company={company} />
     </Fragment>
   );
 };
@@ -121,6 +125,11 @@ export async function getStaticProps() {
   //Prices fetching starts here
   const price_res = await fetch('http://localhost:1337/api/prices?populate=thumbnail');
   const price: IPrice = await price_res.json();
+
+  //Company fetching starts here
+  const comp_res = await fetch('http://localhost:1337/api/company?populate=companyMainPhoto');
+  const company: ICompany = await comp_res.json();
+
   // By returning { props: { posts } }, the Blog component
   // will receive `posts` as a prop at build time
 
@@ -130,7 +139,8 @@ export async function getStaticProps() {
       services,
       drone,
       video,
-      price
+      price,
+      company
     }
   };
 }
