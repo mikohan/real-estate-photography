@@ -22,6 +22,7 @@ import { IProject, ProjectDatum } from 'interfaces/IProjects';
 import Portfolio8Videos from 'components/blocks/portfolio/Portfolio8Videos';
 import { IPrice, IPriceDatum } from 'interfaces/IPrice';
 import { ICompany, PurpleAttributes } from 'interfaces/ICompany';
+import { ISocial, ISocialDatum } from 'interfaces/ISocial';
 import Footer5Custom from 'components/blocks/footer/Footer5Custom';
 
 type Props = {
@@ -29,8 +30,9 @@ type Props = {
   services: IService;
   drone: IProject;
   video: IProject;
-  price: IPrice;
+  price?: IPrice;
   company: ICompany;
+  social: ISocial;
 };
 
 const Demo3: NextPage<Props> = (props) => {
@@ -40,9 +42,10 @@ const Demo3: NextPage<Props> = (props) => {
   const drone_img: ProjectDatum[] = props.drone.data.attributes.photo!.data;
   const video_img: ProjectDatum[] = props.video.data.attributes.photo!.data;
   const video_video: ProjectDatum[] = props.video.data.attributes.video!.data;
-  const prices: IPriceDatum[] = props.price.data;
+  const prices: IPriceDatum[] = props.price!.data;
   const rEPrice = prices[0];
   const company: PurpleAttributes = props.company.data.attributes;
+  const social: ISocialDatum[] = props.social.data;
   console.log(company);
 
   // const serviceRE = 'Real Estate Photography';
@@ -55,7 +58,7 @@ const Demo3: NextPage<Props> = (props) => {
 
       {/* ========== header section ========== */}
       <header className="wrapper bg-dark">
-        <Navbar4 onePageDemo />
+        <Navbar4 social={social} company={company} onePageDemo />
       </header>
 
       <main className="content-wrapper">
@@ -101,7 +104,7 @@ const Demo3: NextPage<Props> = (props) => {
       </main>
 
       {/* ========== footer section ========== */}
-      <Footer5Custom company={company} />
+      <Footer5Custom company={company} social={social} />
     </Fragment>
   );
 };
@@ -130,6 +133,9 @@ export async function getStaticProps() {
   const comp_res = await fetch('http://localhost:1337/api/company?populate=companyMainPhoto');
   const company: ICompany = await comp_res.json();
 
+  const social_res = await fetch('http://localhost:1337/api/social-medias');
+  const social: ISocial = await social_res.json();
+
   // By returning { props: { posts } }, the Blog component
   // will receive `posts` as a prop at build time
 
@@ -140,7 +146,8 @@ export async function getStaticProps() {
       drone,
       video,
       price,
-      company
+      company,
+      social
     }
   };
 }

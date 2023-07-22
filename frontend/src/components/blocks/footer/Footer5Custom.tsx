@@ -2,106 +2,73 @@ import { FC } from 'react';
 import Image from 'next/image';
 // -------- custom component -------- //
 import NextLink from 'components/reuseable/links/NextLink';
-import SocialLinks from 'components/reuseable/SocialLinks';
+import SocialLinksCustom from 'components/reuseable/SocialLinksCustom';
 // -------- data -------- //
 import footerNav from 'data/footer';
 import { PurpleAttributes } from 'interfaces/ICompany';
+import { ISocialDatum } from 'interfaces/ISocial';
 
 interface IProps {
   company: PurpleAttributes;
+  social: ISocialDatum[];
 }
 
-const Footer5Custom: FC<IProps> = ({ company }) => {
+const Footer5Custom: FC<IProps> = ({ company, social }) => {
+  const year = new Date().getFullYear();
   return (
-    <footer className="bg-dark text-inverse">
-      <div className="container pt-15 pt-md-17 pb-13 pb-md-15">
-        <div className="row gy-6 gy-lg-0">
-          <div className="col-md-4 col-lg-3">
+    <footer className="bg-dark text-inverse pt-13">
+      <div className="container pt-13 pb-7">
+        <div className="row gx-lg-0 gy-6">
+          <div className="col-lg-4">
             <div className="widget">
-              <img className="mb-4" src="/img/logo-light.png" srcSet="/img/logo-light@2x.png 2x" alt="" />
-
-              <p className="mb-4">
-                © 2022 Sandbox. <br className="d-none d-lg-block" />
-                All rights reserved.
+              <img className="mb-4" src="/img/logo-dark.png" srcSet="/img/logo-dark@2x.png 2x" alt="" />
+              <p className="lead mb-0">
+                We are {company.companyName}, a team of photographers specializing in Real Estate Photography.
               </p>
-
-              <SocialLinks className="nav social social-white" />
             </div>
           </div>
 
-          <div className="col-md-4 col-lg-3">
+          <div className="col-lg-3 offset-lg-2">
             <div className="widget">
-              <h4 className="widget-title text-white mb-3">Get in Touch</h4>
-              <address className="pe-xl-15 pe-xxl-17">Moonshine St. 14/05 Light City, London, United Kingdom</address>
-              <NextLink title="info@email.com" href="mailto:#" />
-              <br /> 00 (123) 456 78 90
-            </div>
-          </div>
+              <div className="d-flex flex-row">
+                <div>
+                  <div className="icon text-primary fs-28 me-4 mt-n1">
+                    <i className="uil uil-phone-volume" />
+                  </div>
+                </div>
 
-          <div className="col-md-4 col-lg-3">
-            <div className="widget">
-              <h4 className="widget-title text-white mb-3">Learn More</h4>
-              <ul className="list-unstyled  mb-0">
-                {footerNav.map(({ title, url }) => (
-                  <li key={title}>
-                    <NextLink title={title} href={url} />
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          <div className="col-md-12 col-lg-3">
-            <div className="widget">
-              <h4 className="widget-title text-white mb-3">Our Newsletter</h4>
-              <p className="mb-5">Subscribe to our newsletter to get our news &amp; deals delivered to you.</p>
-
-              <div className="newsletter-wrapper">
-                <div id="mc_embed_signup2">
-                  <form
-                    method="post"
-                    target="_blank"
-                    className="validate dark-fields"
-                    id="mc-embedded-subscribe-form2"
-                    name="mc-embedded-subscribe-form"
-                    action="https://elemisfreebies.us20.list-manage.com/subscribe/post?u=aa4947f70a475ce162057838d&amp;id=b49ef47a9a"
-                  >
-                    <div id="mc_embed_signup_scroll2">
-                      <div className="mc-field-group input-group form-floating">
-                        <input
-                          type="email"
-                          name="EMAIL"
-                          id="mce-EMAIL2"
-                          placeholder="Email Address"
-                          className="required email form-control"
-                        />
-
-                        <label htmlFor="mce-EMAIL2">Email Address</label>
-                        <input
-                          value="Join"
-                          type="submit"
-                          name="subscribe"
-                          id="mc-embedded-subscribe2"
-                          className="btn btn-primary"
-                        />
-                      </div>
-
-                      <div id="mce-responses2" className="clear">
-                        <div className="response" id="mce-error-response2" style={{ display: 'none' }} />
-                        <div className="response" id="mce-success-response2" style={{ display: 'none' }} />
-                      </div>
-
-                      <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
-                        <input type="text" tabIndex={-1} name="b_ddc180777a163e0f9f66ee014_4b1bcfa0bc" />
-                      </div>
-
-                      <div className="clear" />
-                    </div>
-                  </form>
+                <div>
+                  <h5 className="mb-1">Phone</h5>
+                  <p className="mb-0">{company.companyPhone}</p>
                 </div>
               </div>
             </div>
           </div>
+
+          <div className="col-lg-3">
+            <div className="widget">
+              <div className="d-flex flex-row">
+                <div>
+                  <div className="icon text-primary fs-28 me-4 mt-n1">
+                    <i className="uil uil-location-pin-alt" />
+                  </div>
+                </div>
+
+                <div className="align-self-start justify-content-start">
+                  <h5 className="mb-1">Address</h5>
+                  <address>{company.companyAddress + ', ' + company.companyAddress2}</address>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr className="mt-11 mt-md-12 mb-7" />
+        <div className="d-md-flex align-items-center justify-content-between">
+          <p className="mb-2 mb-lg-0">
+            © {year} {company.companyName}. All rights reserved.
+          </p>
+          <SocialLinksCustom social={social} className="nav social social-muted mb-0 text-md-end" />
         </div>
       </div>
     </footer>
