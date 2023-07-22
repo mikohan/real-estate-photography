@@ -78,7 +78,7 @@ const Demo3: NextPage<Props> = (props) => {
             </section>
 
             {/* ========== why choose us section ========== */}
-            <About3 />
+            {/* <About3 /> */}
           </div>
         </section>
 
@@ -86,7 +86,7 @@ const Demo3: NextPage<Props> = (props) => {
         <CTA4 />
 
         {/* ========== case studies section ========== */}
-        <Blog1 />
+        {/* <Blog1 /> */}
 
         <section className="wrapper bg-light angled upper-end lower-start">
           <div className="container py-16 py-md-18 position-relative">
