@@ -34,7 +34,7 @@ const Info: FC<InfoProps> = (props) => {
 
       <div className="offcanvas-body pb-6">
         <div className="widget mb-8">
-          <p>Description</p>
+          <p>{company.slogan}</p>
         </div>
 
         <div className="widget mb-8">

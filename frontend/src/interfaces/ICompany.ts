@@ -15,6 +15,7 @@ export interface PurpleAttributes {
   companyAddress: string;
   companyBackend: string;
   companyAddress2: string;
+  slogan: string;
   createdAt: Date;
   updatedAt: Date;
   publishedAt: Date;

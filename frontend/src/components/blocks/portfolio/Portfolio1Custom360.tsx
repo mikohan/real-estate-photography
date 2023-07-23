@@ -1,10 +1,4 @@
 import { FC } from 'react';
-import Image from 'next/image';
-import Carousel from 'components/reuseable/Carousel';
-import { IProject, ProjectDatum } from 'interfaces/IProjects';
-// -------- data -------- //
-import { portfolioList1 } from 'data/portfolio';
-import { IPriceDatum } from 'interfaces/IPrice';
 import dynamic from 'next/dynamic';
 import React, { useEffect, useRef } from 'react';
 import { IMediaSet } from 'interfaces/IMediaSet';
@@ -34,7 +28,7 @@ const Portfolio1Custom360: FC<PropsInterface> = ({ projectImages }) => {
         <div className="row mb-8 text-center">
           <div className="col-lg-9 col-xl-8 col-xxl-7 mx-auto">
             <h2 className="fs-16 text-uppercase text-primary mb-3">Drone 360 Tours</h2>
-            <h3 className="display-4">Check out some of our awesome projects with creative ideas and great design.</h3>
+            <h3 className="display-4">Help your customers reveil beautiful views</h3>
           </div>
         </div>
         <div className="grid grid-view projects-masonry">
@@ -45,7 +39,7 @@ const Portfolio1Custom360: FC<PropsInterface> = ({ projectImages }) => {
                   <div id="some" className="row">
                     <ReactPhotoSphereViewer
                       container={'some'}
-                      src={`http://localhost:1337${image}`}
+                      src={`http://localhost:1337${item.attributes.url}`}
                       height={'30vh'}
                       width={'100%'}
                     ></ReactPhotoSphereViewer>
@@ -54,8 +48,8 @@ const Portfolio1Custom360: FC<PropsInterface> = ({ projectImages }) => {
 
                 <div className="project-details d-flex justify-content-center flex-column">
                   <div className="post-header">
-                    <div className={`post-category mb-2 text-aqua`}>Some text</div>
-                    <h2 className="post-title h3">Some h2 text</h2>
+                    <div className={`post-category mb-2 text-aqua`}>3D Panorama Tour</div>
+                    <h2 className="post-title h3">{item.attributes.alternativeText}</h2>
                   </div>
                 </div>
               </div>

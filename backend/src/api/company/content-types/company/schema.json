@@ -4,7 +4,8 @@
   "info": {
     "singularName": "company",
     "pluralName": "companies",
-    "displayName": "company"
+    "displayName": "company",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -30,14 +31,18 @@
       "type": "string"
     },
     "companyMainPhoto": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "slogan": {
+      "type": "string"
     }
   }
 }
