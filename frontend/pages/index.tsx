@@ -26,6 +26,7 @@ import { ISocial, ISocialDatum } from 'interfaces/ISocial';
 import Footer5Custom from 'components/blocks/footer/Footer5Custom';
 import { IMediaSet } from 'interfaces/IMediaSet';
 import { Portfolio1Custom360 } from 'components/blocks/portfolio';
+import Navbar4Custom from 'components/blocks/navbar/Navbar4Custom';
 
 type Props = {
   port1: IProject;
@@ -51,7 +52,6 @@ const Demo3: NextPage<Props> = (props) => {
   const social: ISocialDatum[] = props.social.data;
   const mediaSet: IMediaSet = props.panorama;
   //data.attributes.media.data
-  console.log(mediaSet);
 
   // const serviceRE = 'Real Estate Photography';
   const serviceRE: string = props.port1.data.attributes.title;
@@ -63,7 +63,7 @@ const Demo3: NextPage<Props> = (props) => {
 
       {/* ========== header section ========== */}
       <header className="wrapper bg-dark">
-        <Navbar4 social={social} company={company} onePageDemo />
+        <Navbar4Custom social={social} company={company} onePageDemo />
       </header>
 
       <main className="content-wrapper">
@@ -76,7 +76,7 @@ const Demo3: NextPage<Props> = (props) => {
             <Pricing3 />
 
             {/* ========== what we do section ========== */}
-            <section id="services">
+            <section id="why-us">
               <Services4Custom services={serv} />
             </section>
 
@@ -84,11 +84,7 @@ const Demo3: NextPage<Props> = (props) => {
               {/* ========== how it works section ========== */}
               <Portfolio1Custom projectImages={imgs1} serviceTitle={serviceRE} />
               <Portfolio1Custom projectImages={drone_img} serviceTitle={serviceDrone} />
-            </section>
-            <section id="video">
               <Portfolio8Videos projectVideos={video_video} serviceTitle={serviceVideo} />
-            </section>
-            <section id="drone-tours">
               <Portfolio1Custom360 projectImages={mediaSet} />
             </section>
 
@@ -103,7 +99,7 @@ const Demo3: NextPage<Props> = (props) => {
         {/* ========== case studies section ========== */}
         {/* <Blog1 /> */}
 
-        <section className="wrapper bg-light angled upper-end lower-start">
+        <section id="contacts" className="wrapper bg-light angled upper-end lower-start">
           <div className="container py-16 py-md-18 position-relative">
             {/* ========== contact section ========== */}
             <Contact1 company={company} />

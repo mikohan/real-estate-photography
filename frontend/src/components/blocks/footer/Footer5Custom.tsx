@@ -21,7 +21,12 @@ const Footer5Custom: FC<IProps> = ({ company, social }) => {
         <div className="row gx-lg-0 gy-6">
           <div className="col-lg-4">
             <div className="widget">
-              <img className="mb-4" src="/img/logo-dark.png" srcSet="/img/logo-dark@2x.png 2x" alt="" />
+              <img
+                className="mb-4"
+                src="/img/logo-dark3.png"
+                srcSet="/img/logo-dark@2x3.png 2x"
+                alt="Logo Angara Lab"
+              />
               <p className="lead mb-0">
                 We are {company.companyName}, a team of photographers specializing in Real Estate Photography.
               </p>

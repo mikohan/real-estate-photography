@@ -5,18 +5,34 @@ import useSticky from 'hooks/useSticky';
 import NextLink from 'components/reuseable/links/NextLink';
 import SocialLinksCustom from 'components/reuseable/SocialLinksCustom';
 // -------- partial header component -------- //
-import Info from './partials/Info';
+import InfoCustom from './partials/InfoCustom';
 import Search from './partials/Search';
 import Navigations from './partials/Navigations';
-import OnePageDemoLinks from './partials/OnePageDemoLinks';
+import OnePageDemoLinksCustom from './partials/OnePageDemoLinksCustom';
 import { ISocialDatum } from 'interfaces/ISocial';
 import { PurpleAttributes } from 'interfaces/ICompany';
 
 // ===================================================================
-type Navbar4Props = { navClassName?: string; onePageDemo?: boolean; social: ISocialDatum[]; company: PurpleAttributes };
+type Navbar4Props = {
+  navClassName?: string;
+  onePageDemo?: boolean;
+  social: ISocialDatum[];
+  company: PurpleAttributes;
+};
+export type ILink = { id: number; title: string; to: string };
+
 // ===================================================================
 
-const Navbar4: FC<Navbar4Props> = ({ navClassName, onePageDemo, social, company }) => {
+// -------- data -------- //
+const linkList: ILink[] = [
+  { id: 1, title: 'Home', to: 'home' },
+  { id: 2, title: 'Pricing', to: 'pricing' },
+  { id: 3, title: 'Why Us', to: 'why-us' },
+  { id: 4, title: 'Portfolio', to: 'portfolio' },
+  { id: 5, title: 'Contacts', to: 'contacts' }
+];
+
+const Navbar4Custom: FC<Navbar4Props> = ({ navClassName, onePageDemo, social, company }) => {
   const sticky = useSticky(350);
   const navbarRef = useRef<HTMLElement | null>(null);
 
@@ -60,14 +76,18 @@ const Navbar4: FC<Navbar4Props> = ({ navClassName, onePageDemo, social, company 
               </div>
 
               <div className="offcanvas-body d-flex flex-column h-100">
-                {onePageDemo ? <OnePageDemoLinks /> : <Navigations />}
+                {onePageDemo ? <OnePageDemoLinksCustom linkList={linkList} /> : <Navigations />}
 
                 {/* ============= show contact info in the small device sidebar ============= */}
                 <div className="offcanvas-footer d-lg-none">
                   <div>
-                    <NextLink title="info@email.com" className="link-inverse" href="mailto:first.last@email.com" />
+                    <NextLink
+                      title={company.companyEmail}
+                      className="link-inverse"
+                      href={`mailto:${company.companyEmail}`}
+                    />
                     <br />
-                    <NextLink href="tel:0123456789" title="00 (123) 456 78 90" />
+                    <NextLink href={`tel:${company.companyPhone}`} title={company.companyPhone} />
                     <br />
                     <SocialLinksCustom social={social} />
                   </div>
@@ -107,7 +127,7 @@ const Navbar4: FC<Navbar4Props> = ({ navClassName, onePageDemo, social, company 
       </nav>
 
       {/* ============= info sidebar ============= */}
-      <Info />
+      <InfoCustom company={company} social={social} linkList={linkList} />
 
       {/* ============= show search box ============= */}
       <Search />
@@ -116,6 +136,8 @@ const Navbar4: FC<Navbar4Props> = ({ navClassName, onePageDemo, social, company 
 };
 
 // set deafult Props
-Navbar4.defaultProps = { navClassName: 'navbar navbar-expand-lg extended extended-alt navbar-light navbar-bg-light' };
+Navbar4Custom.defaultProps = {
+  navClassName: 'navbar navbar-expand-lg extended extended-alt navbar-light navbar-bg-light'
+};
 
-export default Navbar4;
+export default Navbar4Custom;
