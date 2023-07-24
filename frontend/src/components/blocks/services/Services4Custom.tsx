@@ -28,6 +28,7 @@ const Services4Custom: FC<IProps> = ({ services }) => {
           };
           return (
             <ServiceCard2Custom
+              hiddenBtn
               {...payload}
               key={item.id}
               iconBoxClassNames="icon btn btn-block btn-lg btn-soft-primary pe-none mb-6"

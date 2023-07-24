@@ -52,6 +52,7 @@ const Navbar4Custom: FC<Navbar4Props> = ({ navClassName, onePageDemo, social, co
                 title={<img alt="logo" src="/img/logo-dark3.png" srcSet="/img/logo-dark@2x3.png 2x" />}
               />
             </div>
+            <div></div>
           </div>
 
           <div className="navbar-collapse-wrapper bg-white d-flex flex-row align-items-center justify-content-between">
