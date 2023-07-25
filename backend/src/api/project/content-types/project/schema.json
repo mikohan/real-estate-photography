@@ -16,9 +16,6 @@
       "type": "string",
       "required": true
     },
-    "date": {
-      "type": "date"
-    },
     "photo": {
       "type": "media",
       "multiple": true,
@@ -31,18 +28,14 @@
       ]
     },
     "video": {
-      "type": "media",
-      "multiple": true,
-      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ]
-    },
-    "virtual_tour": {
-      "type": "string"
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }
