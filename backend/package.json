@@ -11,10 +11,12 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "@strapi/strapi": "4.11.7",
-    "@strapi/plugin-users-permissions": "4.11.5",
     "@strapi/plugin-i18n": "4.11.5",
-    "better-sqlite3": "8.0.1"
+    "@strapi/plugin-users-permissions": "4.11.5",
+    "@strapi/strapi": "4.11.7",
+    "better-sqlite3": "8.0.1",
+    "strapi-paypal": "^1.1.0",
+    "strapi-stripe": "^3.4.1"
   },
   "author": {
     "name": "A Strapi developer"
