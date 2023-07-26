@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { slideInDownAnimate } from 'utils/animation';
 import Typewriter from 'typewriter-effect';
+import Contact from 'components/blocks/navbar/partials/Contact';
 // -------- custom hook -------- //
 import useLightBox from 'hooks/useLightBox';
 
@@ -41,8 +42,15 @@ const Hero3: FC = () => {
             </p>
 
             <div style={slideInDownAnimate('1200ms')}>
-              <a className="btn btn-lg btn-primary rounded">Get Started</a>
+              <button
+                className="btn btn-primary rounded-pill mx-1 mb-2 mb-md-0"
+                data-bs-toggle="modal"
+                data-bs-target="#modal-contact"
+              >
+                Get Instant Quote
+              </button>
             </div>
+            <Contact />
           </div>
 
           <div className="col-lg-5 offset-lg-1 mb-n18" data-cues="slideInDown">

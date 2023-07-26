@@ -1,7 +1,7 @@
 import { FC, FormEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
-import { company } from 'data/company-info';
+import { companyInfo as company } from 'config';
 
 const ContactForm: FC = () => {
   const { push } = useRouter();
