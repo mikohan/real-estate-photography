@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import type { AppProps } from 'next/app';
 import { Fragment, useEffect, useState } from 'react';
 import ThemeProvider from 'theme/ThemeProvider';
+import { Provider } from 'react-redux';
 
 // animate css
 import 'animate.css';
@@ -20,6 +21,7 @@ import 'glightbox/dist/css/glightbox.css';
 import 'plugins/scrollcue/scrollCue.css';
 // Bootstrap and custom scss
 import 'assets/scss/style.scss';
+import { store } from 'redux/store';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { pathname } = useRouter();
@@ -89,7 +91,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
       <ThemeProvider>
         {/* <div className="page-loader" /> */}
-        {loading ? <div className="page-loader" /> : <Component {...pageProps} />}
+        <Provider store={store}>{loading ? <div className="page-loader" /> : <Component {...pageProps} />}</Provider>
       </ThemeProvider>
     </Fragment>
   );
