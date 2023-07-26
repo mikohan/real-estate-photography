@@ -12,7 +12,7 @@ import { Contact1 } from 'components/blocks/contact';
 import { Pricing3 } from 'components/blocks/pricing';
 import { Process3 } from 'components/blocks/process';
 import { Services4, Services4Custom } from 'components/blocks/services';
-import { CTA4 } from 'components/blocks/call-to-action';
+import { CTA4Custom } from 'components/blocks/call-to-action';
 import { Testimonial2 } from 'components/blocks/testimonial';
 import NextLink from 'components/reuseable/links/NextLink';
 import PageProgress from 'components/common/PageProgress';
@@ -94,7 +94,7 @@ const Demo3: NextPage<Props> = (props) => {
         </section>
 
         {/* ========== call to action section ========== */}
-        <CTA4 />
+        <CTA4Custom />
 
         {/* ========== case studies section ========== */}
         {/* <Blog1 /> */}

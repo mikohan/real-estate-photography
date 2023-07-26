@@ -2,6 +2,7 @@ import CTA1 from './CTA1';
 import CTA2 from './CTA2';
 import CTA3 from './CTA3';
 import CTA4 from './CTA4';
+import CTA4Custom from './CTA4Custom';
 import CTA5 from './CTA5';
 import CTA6 from './CTA6';
 import CTA7 from './CTA7';
@@ -12,4 +13,4 @@ import CTA11 from './CTA11';
 import CTA12 from './CTA12';
 import CTA13 from './CTA13';
 
-export { CTA1, CTA2, CTA3, CTA4, CTA5, CTA6, CTA7, CTA8, CTA9, CTA10, CTA11, CTA12, CTA13 };
+export { CTA1, CTA2, CTA3, CTA4, CTA4Custom, CTA5, CTA6, CTA7, CTA8, CTA9, CTA10, CTA11, CTA12, CTA13 };

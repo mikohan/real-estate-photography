@@ -3,7 +3,7 @@ export const companyInfo = {
   sendEmailSettings: {
     url: 'https://api.emailjs.com/api/v1.0/email/send',
     service_id: 'service_28l37sa',
-    template_id: 'template_7kv08iz',
+    template_id: 'template_z37kom6',
     user_id: '42Bbj0zJrwuCZtcHN'
   }
 };

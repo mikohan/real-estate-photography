@@ -1,4 +1,6 @@
 import { FC } from 'react';
+import { slideInDownAnimate } from 'utils/animation';
+import Contact from '../navbar/partials/Contact';
 import FigureImage from 'components/reuseable/FigureImage';
 import { PurpleAttributes } from 'interfaces/ICompany';
 
@@ -70,6 +72,20 @@ const Contact1: FC<IProps> = ({ company }) => {
                 {company.companyEmail}
               </a>
             </p>
+          </div>
+        </div>
+        <div className="d-flex flex-row mt-12">
+          <div>
+            <div style={slideInDownAnimate('1200ms')}>
+              <button
+                className="btn btn-primary rounded-pill mx-1 mb-2 mb-md-0"
+                data-bs-toggle="modal"
+                data-bs-target="#modal-contact"
+              >
+                Get Instant Quote
+              </button>
+            </div>
+            <Contact />
           </div>
         </div>
       </div>

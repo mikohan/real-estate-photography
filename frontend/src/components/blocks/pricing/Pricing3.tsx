@@ -1,4 +1,6 @@
 import { FC, useState } from 'react';
+import { slideInDownAnimate } from 'utils/animation';
+import Contact from '../navbar/partials/Contact';
 import Switch from 'components/reuseable/Switch';
 import NextLink from 'components/reuseable/links/NextLink';
 import { PricingCard1 } from 'components/reuseable/pricing-cards';
@@ -17,7 +19,16 @@ const Pricing3: FC = () => {
           You can choose addons on <NextLink title="Go to Prices" href="#" className="hover" /> page.
         </p>
 
-        <NextLink href="#" title="See All Prices" className="btn btn-primary rounded mt-2" />
+        <div style={slideInDownAnimate('1200ms')}>
+          <button
+            className="btn btn-primary rounded-pill mx-1 mb-2 mb-md-0"
+            data-bs-toggle="modal"
+            data-bs-target="#modal-contact"
+          >
+            Get Instant Quote
+          </button>
+        </div>
+        <Contact />
       </div>
 
       <div className="col-lg-7 offset-lg-1 pricing-wrapper">
