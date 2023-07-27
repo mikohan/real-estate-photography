@@ -5,69 +5,16 @@ export interface IPrice {
 
 export interface IPriceDatum {
   id: number;
-  attributes: DatumAttributes;
+  attributes: Attributes;
 }
 
-export interface DatumAttributes {
-  title: string;
+export interface Attributes {
   value: number;
   createdAt: Date;
   updatedAt: Date;
   publishedAt: Date;
-  features: Feature[] | null;
-  thumbnail: Thumbnail;
-}
-
-export interface Feature {
-  id: number;
   name: string;
-}
-
-export interface Thumbnail {
-  data: Data | null;
-}
-
-export interface Data {
-  id: number;
-  attributes: DataAttributes;
-}
-
-export interface DataAttributes {
-  name: string;
-  alternativeText: null | string;
-  caption: null;
-  width: number;
-  height: number;
-  formats: Formats;
-  hash: string;
-  ext: string;
-  mime: string;
-  size: number;
-  url: string;
-  previewUrl: null;
-  provider: string;
-  provider_metadata: null;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-export interface Formats {
-  thumbnail: Large;
-  small: Large;
-  large: Large;
-  medium: Large;
-}
-
-export interface Large {
-  name: string;
-  hash: string;
-  ext: string;
-  mime: string;
-  path: null;
-  width: number;
-  height: number;
-  size: number;
-  url: string;
+  description: null;
 }
 
 export interface Meta {

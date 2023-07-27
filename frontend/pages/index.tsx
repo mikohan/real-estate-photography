@@ -4,7 +4,7 @@ import { Fragment } from 'react';
 // -------- custom component -------- //
 import { Hero3 } from 'components/blocks/hero';
 import { Blog1 } from 'components/blocks/blog';
-import { Facts1 } from 'components/blocks/facts';
+import { Facts1Increment } from 'components/blocks/facts';
 import { About3 } from 'components/blocks/about';
 import { Navbar4 } from 'components/blocks/navbar';
 import { Footer5 } from 'components/blocks/footer';
@@ -68,6 +68,7 @@ const Demo3: NextPage<Props> = (props) => {
 
       <main className="content-wrapper">
         {/* ========== hero section ========== */}
+        <Facts1Increment />
         <Hero3 />
 
         <section className="wrapper bg-light">

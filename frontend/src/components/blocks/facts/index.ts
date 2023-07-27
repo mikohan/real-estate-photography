@@ -1,4 +1,5 @@
 import Facts1 from './Facts1';
+import Facts1Increment from './Facts1Increment';
 import Facts2 from './Facts2';
 import Facts3 from './Facts3';
 import Facts4 from './Facts4';
@@ -22,6 +23,7 @@ import Facts21 from './Facts21';
 
 export {
   Facts1,
+  Facts1Increment,
   Facts2,
   Facts3,
   Facts4,
