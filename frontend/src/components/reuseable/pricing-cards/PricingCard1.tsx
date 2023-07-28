@@ -20,7 +20,6 @@ const PricingCard1: FC<PricingCard1Props> = (props) => {
 
   const yearClasses = activeYearly ? 'price-show' : 'price-hide price-hidden';
   const monthClasses = !activeYearly ? 'price-show' : 'price-hide price-hidden';
-  console.log(planName);
 
   return (
     <div className="pricing card shadow-lg">

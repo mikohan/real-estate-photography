@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { increment, decrement, incrementByAmount } from 'redux/features/counterSlice';
 import { useState } from 'react';
 import { IState } from 'redux/store';
-import { useGetPricesQuery } from 'redux/services/pricesAPI';
+import { pricesApi, useGetPricesQuery } from 'redux/services/pricesAPI';
 
 const Facts1Increment: FC = () => {
   const count = useSelector((state: IState) => state.counter.count);
@@ -15,6 +15,8 @@ const Facts1Increment: FC = () => {
   const [amount, setAmount] = useState(0);
   // API
   const { isLoading, isFetching, data, error } = useGetPricesQuery(null);
+  // const handlePrice = () => dispatch()
+  console.log(data, isLoading);
   return (
     <section className="wrapper bg-soft-primary">
       <div className="container py-14 pt-md-17 pb-md-21">

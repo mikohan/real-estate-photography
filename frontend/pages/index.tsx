@@ -4,7 +4,6 @@ import { Fragment } from 'react';
 // -------- custom component -------- //
 import { Hero3 } from 'components/blocks/hero';
 import { Blog1 } from 'components/blocks/blog';
-import { Facts1Increment } from 'components/blocks/facts';
 import { About3 } from 'components/blocks/about';
 import { Navbar4 } from 'components/blocks/navbar';
 import { Footer5 } from 'components/blocks/footer';
@@ -27,6 +26,8 @@ import Footer5Custom from 'components/blocks/footer/Footer5Custom';
 import { IMediaSet } from 'interfaces/IMediaSet';
 import { Portfolio1Custom360 } from 'components/blocks/portfolio';
 import Navbar4Custom from 'components/blocks/navbar/Navbar4Custom';
+// test component
+import { Test } from 'components/blocks/facts/SWRTest';
 
 type Props = {
   port1: IProject;
@@ -68,7 +69,7 @@ const Demo3: NextPage<Props> = (props) => {
 
       <main className="content-wrapper">
         {/* ========== hero section ========== */}
-        <Facts1Increment />
+        <Test />
         <Hero3 />
 
         <section className="wrapper bg-light">
