@@ -1,5 +1,6 @@
 import NextLink from 'components/reuseable/links/NextLink';
 import SocialLinks from 'components/reuseable/SocialLinks';
+import Link from 'next/link';
 import { FC, Fragment, ReactElement } from 'react';
 import { PurpleAttributes } from 'interfaces/ICompany';
 import { ISocialDatum } from 'interfaces/ISocial';
@@ -48,13 +49,23 @@ const Info: FC<InfoProps> = (props) => {
         <div className="widget mb-8">
           <h4 className="widget-title text-white mb-3">Learn More</h4>
           <ul className="list-unstyled">
-            {linkList.map((item: ILink) => (
-              <li className="nav-item" key={item.id}>
-                <ScrollLink smooth spy activeClass="active" to={item.to} className="nav-link scroll" offset={-75}>
-                  {item.title}
-                </ScrollLink>
-              </li>
-            ))}
+            {linkList.map((item: ILink) =>
+              item.scroll ? (
+                <li className="nav-item" key={item.id}>
+                  <ScrollLink smooth spy activeClass="active" to={item.to} className="nav-link scroll" offset={-75}>
+                    {item.title}
+                  </ScrollLink>
+                </li>
+              ) : (
+                <li className="nav-item" key={item.id}>
+                  <Link href={item.to}>
+                    <div className="nav-link scroll" style={{ cursor: 'pointer' }}>
+                      {item.title}
+                    </div>
+                  </Link>
+                </li>
+              )
+            )}
           </ul>
         </div>
 

@@ -3,17 +3,10 @@ import type { InferGetStaticPropsType, GetStaticProps } from 'next';
 import { Fragment } from 'react';
 // -------- custom component -------- //
 import { Hero3 } from 'components/blocks/hero';
-import { Blog1 } from 'components/blocks/blog';
-import { About3 } from 'components/blocks/about';
-import { Navbar4 } from 'components/blocks/navbar';
-import { Footer5 } from 'components/blocks/footer';
 import { Contact1 } from 'components/blocks/contact';
 import { Pricing3 } from 'components/blocks/pricing';
-import { Process3 } from 'components/blocks/process';
-import { Services4, Services4Custom } from 'components/blocks/services';
+import { Services4Custom } from 'components/blocks/services';
 import { CTA4Custom } from 'components/blocks/call-to-action';
-import { Testimonial2 } from 'components/blocks/testimonial';
-import NextLink from 'components/reuseable/links/NextLink';
 import PageProgress from 'components/common/PageProgress';
 import { Portfolio1Custom } from 'components/blocks/portfolio';
 import { IService, Datum } from 'interfaces/IServices';
@@ -69,7 +62,6 @@ const Demo3: NextPage<Props> = (props) => {
 
       <main className="content-wrapper">
         {/* ========== hero section ========== */}
-        <Test />
         <Hero3 />
 
         <section className="wrapper bg-light">

@@ -1,11 +1,12 @@
 import { FC, useState } from 'react';
 import { slideInDownAnimate } from 'utils/animation';
 import Contact from '../navbar/partials/Contact';
-import Switch from 'components/reuseable/Switch';
 import NextLink from 'components/reuseable/links/NextLink';
 import { PricingCard1 } from 'components/reuseable/pricing-cards';
+import { urls } from 'utils/urls';
 // -------- data -------- //
 import { pricingList1 } from 'data/pricing';
+import Link from 'next/link';
 
 const Pricing3: FC = () => {
   const [activeYearly, setActiveYearly] = useState(false);
@@ -16,19 +17,14 @@ const Pricing3: FC = () => {
         <h2 className="fs-16 text-uppercase text-line text-primary mt-lg-18 mb-3">Our Pricing</h2>
         <h3 className="display-4 mb-3">We offer base and advance price packages.</h3>
         <p>
-          You can choose addons on <NextLink title="Go to Prices" href="#" className="hover" /> page.
+          You can choose services on <NextLink title="Go to Prices" href={urls.shop()} className="hover" /> page.
         </p>
 
         <div style={slideInDownAnimate('1200ms')}>
-          <button
-            className="btn btn-primary rounded-pill mx-1 mb-2 mb-md-0"
-            data-bs-toggle="modal"
-            data-bs-target="#modal-contact"
-          >
-            Get Instant Quote
-          </button>
+          <Link href={urls.shop()}>
+            <button className="btn btn-primary rounded-pill mx-1 mb-2 mb-md-0">Shop Our Services</button>
+          </Link>
         </div>
-        <Contact />
       </div>
 
       <div className="col-lg-7 offset-lg-1 pricing-wrapper">
