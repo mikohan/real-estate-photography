@@ -41,7 +41,11 @@ const ShopTwo: NextPage<Props> = (props) => {
 
   const grandTotalInit: IGrandTotal[] = [];
   const [grandTotal, setGrandTotal] = useState<IGrandTotal[]>(grandTotalInit);
-  console.log(grandTotal);
+  const totArr = grandTotal.map((item: IGrandTotal) => item.price);
+  let totSum = 0;
+  if (totArr.length) {
+    totSum = totArr.reduce((acc: number, cur: number) => acc + cur);
+  }
 
   const company: PurpleAttributes = props.company.data.attributes;
   const social: ISocialDatum[] = props.social.data;
@@ -107,20 +111,12 @@ const ShopTwo: NextPage<Props> = (props) => {
                 <div className="table-responsive">
                   <table className="table table-order">
                     <tbody>
-                      {orderSummeryRow.map(({ name, value }) => (
-                        <tr key={name}>
-                          <td className="ps-0">
-                            <strong className="text-dark">{name}</strong>
-                          </td>
-
-                          <td className={value.parentClass}>
-                            <p className={value.childClass}>
-                              {name === 'Discount' && '-'}
-                              {currency(value.amount)}
-                            </p>
-                          </td>
-                        </tr>
-                      ))}
+                      <tr>
+                        <td className="ps-0">
+                          <strong className="text-dark">Total Order</strong>
+                        </td>
+                        <td className="pe-0 text-end">${totSum}</td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
