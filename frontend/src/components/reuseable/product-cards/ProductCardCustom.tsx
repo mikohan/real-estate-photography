@@ -2,23 +2,19 @@ import { FC } from 'react';
 import currency from 'utils/currency';
 import NextLink from '../links/NextLink';
 import ratingGenerate from 'utils/ratings';
+import { IPriceDatum } from 'interfaces/IPrice';
+import { BACKEND_IMG_URL } from 'config';
+import Image from 'next/image';
 
 // =========================================
 type ProductCardProps = {
-  image: string;
-  title: string;
-  new?: boolean;
-  sale?: boolean;
-  rating: number;
-  category: string;
-  salePrice?: number;
+  price: IPriceDatum;
   className?: string;
-  regularPrice: number;
 };
 // =========================================
 
 const ProductCard: FC<ProductCardProps> = (props) => {
-  const { image, title, new: newProduct, sale, category, salePrice, regularPrice, rating, className = '' } = props;
+  const { className, price } = props;
 
   const badge = (title: string, color: string) => {
     return (
@@ -31,66 +27,38 @@ const ProductCard: FC<ProductCardProps> = (props) => {
     );
   };
 
+  let alt: string = '';
+  try {
+    alt = price.attributes.thumbnail.data.attributes.alternativeText
+      ? price.attributes.thumbnail.data.attributes.alternativeText
+      : 'Alt Text';
+  } catch {
+    alt = 'Alt Text';
+  }
+  const src = BACKEND_IMG_URL + price.attributes.thumbnail.data.attributes.formats.large.url;
+  const sale = true;
+  const newProduct = true;
+  const salePrice = 5;
+  const regularPrice = price.attributes.value;
+
+  const height = price.attributes.thumbnail.data.attributes.formats.large.height;
+  const width = price.attributes.thumbnail.data.attributes.formats.large.width;
   return (
     <div className={`project item ${className}`}>
       <figure className="rounded mb-6 position-relative overflow-hidden">
-        <img src={`/img/photos/${image}.jpg`} srcSet={`/img/photos/${image}@2x.jpg 2x`} alt="" />
-
-        <a
-          href="#"
-          title=""
-          className="item-like"
-          aria-label="Add to wishlist"
-          data-bs-toggle="white-tooltip"
-          data-bs-original-title="Add to wishlist"
-        >
-          <i className="uil uil-heart" />
-        </a>
-
-        <a
-          href="#"
-          title=""
-          className="item-view"
-          aria-label="Quick view"
-          data-bs-toggle="white-tooltip"
-          data-bs-original-title="Quick view"
-        >
-          <i className="uil uil-eye" />
-        </a>
-
-        <a className="item-cart">
-          <i className="uil uil-shopping-bag" /> Add to Cart
-        </a>
-
-        {newProduct && badge('New!', 'bg-aqua')}
-        {sale && badge('Sale!', 'bg-pink')}
-      </figure>
-
-      <div className="post-header">
-        <div className="d-flex flex-row align-items-center justify-content-between mb-2">
-          <div className="post-category text-ash mb-0">{category}</div>
-          <span className={`ratings ${ratingGenerate(rating)}`} />
+        <div className="container">
+          <div className="row">
+            <div className="col-4">
+              <h2>{price.attributes.name}</h2>
+              <NextLink title="Add to Cart" href="#" className="btn btn-primary" />
+            </div>
+            <div className="col-4"></div>
+            <div className="col-4">
+              <Image src={src} height={height} width={width} alt={alt} />
+            </div>
+          </div>
         </div>
-
-        <h2 className="post-title h3 fs-22">
-          <NextLink title={title} href="#" className="link-dark" />
-        </h2>
-
-        <p className="price">
-          {salePrice && salePrice > 0 ? (
-            <>
-              <del>
-                <span className="amount">{currency(salePrice)}</span>
-              </del>{' '}
-              <ins>
-                <span className="amount">{currency(regularPrice)}</span>
-              </ins>
-            </>
-          ) : (
-            <span className="amount">{currency(regularPrice)}</span>
-          )}
-        </p>
-      </div>
+      </figure>
     </div>
   );
 };

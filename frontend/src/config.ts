@@ -1,4 +1,5 @@
 export const BACKEND_API_URL = 'http://localhost:1337/api/';
+export const BACKEND_IMG_URL = 'http://localhost:1337';
 export const PRICES_URL = BACKEND_API_URL + 'prices';
 
 export const companyInfo = {

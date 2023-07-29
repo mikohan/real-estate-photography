@@ -7,8 +7,8 @@ const breadcrumb = [
 const tableHeading = [
   { id: 1, title: 'Product' },
   { id: 2, title: 'Price' },
-  { id: 3, title: 'Quantity' },
-  { id: 4, title: 'Total' }
+  { id: 3, title: 'In Order' },
+  { id: 4, title: 'Add' }
 ];
 
 const cartList = [
