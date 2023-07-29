@@ -23,8 +23,16 @@ const CartListItem: FC<CartListItemProps> = (props) => {
   const [regularPrice, setRegularPrice] = useState(price.attributes.value);
   const [checked, setChecked] = useState(false);
 
+  let btnColor = 'btn-soft-leaf';
+  let btnText = 'Add';
+  if (checked) {
+    btnColor = 'btn-soft-fuchsia';
+    btnText = 'Remove';
+  }
+
   const handleChecked = () => {
     setChecked((checked) => !checked);
+
     let arr = [];
     if (!grandTotal.find((item) => item.id === price.id)) {
       arr = [...grandTotal, { id: price.id, price: price.attributes.value }];
@@ -33,10 +41,6 @@ const CartListItem: FC<CartListItemProps> = (props) => {
       arr = grandTotal.filter((item) => item.id !== price.id);
       setGrandTotal(arr);
     }
-  };
-  const total = +quantity * (salePrice || regularPrice);
-  const handleQuantity = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setQuantity(Number(e.target.value));
   };
 
   // Data work
@@ -70,6 +74,10 @@ const CartListItem: FC<CartListItemProps> = (props) => {
         <div className="w-100 ms-4">
           <h3 className="post-title h6 lh-xs mb-1">
             <NextLink title={price.attributes.name} href="#" className="link-dark" />
+            <p
+              style={{ fontSize: '70%', fontWeight: 300 }}
+              dangerouslySetInnerHTML={{ __html: price.attributes.description }}
+            ></p>
           </h3>
         </div>
       </td>
@@ -91,7 +99,7 @@ const CartListItem: FC<CartListItemProps> = (props) => {
         </p>
       </td>
 
-      <td>
+      <td style={{ textAlign: 'center' }}>
         <div className="form-check">
           <input
             className="form-check-input"
@@ -103,8 +111,8 @@ const CartListItem: FC<CartListItemProps> = (props) => {
         </div>
       </td>
       <td>
-        <button className="btn btn-primary rounded-pill" onClick={handleChecked}>
-          Add
+        <button className={`btn ${btnColor} btn-sm rounded-pill`} onClick={handleChecked}>
+          {btnText}
         </button>
       </td>
 

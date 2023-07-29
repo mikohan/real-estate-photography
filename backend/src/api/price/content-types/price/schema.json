@@ -27,7 +27,8 @@
       ]
     },
     "description": {
-      "type": "richtext"
+      "type": "richtext",
+      "required": true
     }
   }
 }

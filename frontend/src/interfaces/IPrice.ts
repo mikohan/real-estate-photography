@@ -14,7 +14,7 @@ export interface DatumAttributes {
   updatedAt: Date;
   publishedAt: Date;
   name: string;
-  description: null;
+  description: string;
   thumbnail: Thumbnail;
 }
 
