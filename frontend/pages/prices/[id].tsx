@@ -1,5 +1,8 @@
 import { NextPage } from 'next';
+import { FC } from 'react';
+import Image from 'next/image';
 import { Fragment, useState } from 'react';
+import { GetStaticPaths, GetStaticProps } from 'next';
 // -------- custom component -------- //
 import Filter from 'components/common/Filter';
 import Select from 'components/reuseable/Select';
@@ -18,7 +21,8 @@ import Footer5Custom from 'components/blocks/footer/Footer5Custom';
 import { tableHeading } from 'data/cart-page';
 import CartListItemCustom from 'components/reuseable/CartListItemCustom';
 import { urls } from 'utils/urls';
-import { IPackageSet, IPackageSetDatum } from 'interfaces/IPackageSet';
+import { IPackageSet, IPackage, IPackageSetDatum } from 'interfaces/IPackageSet';
+import { BACKEND_IMG_URL, BACKEND_API_URL } from 'config';
 const breadcrumb = [
   { id: 1, title: 'Home', url: urls.home() },
   { id: 2, title: 'Shop', url: urls.shop() }
@@ -28,7 +32,7 @@ type Props = {
   price?: IPrice;
   company: ICompany;
   social: ISocial;
-  packages: IPackageSet;
+  pack: IPackage;
 };
 
 export type IGrandTotal = {
@@ -39,19 +43,53 @@ export type IGrandTotal = {
 const ShopTwo: NextPage<Props> = (props) => {
   // filter options
 
+  const company: PurpleAttributes = props.company.data.attributes;
+  const social: ISocialDatum[] = props.social.data;
+  const prices: IPriceDatum[] = props.price!.data;
+  const pack: IPackage = props.pack;
+  const src = BACKEND_IMG_URL + pack.data.attributes.image.data.attributes.url;
+  const alt = pack.data.attributes.image.data.attributes.alternativeText;
+  // data.attributes.image.data.attributes.formats.large.height
+  const height = pack.data.attributes.image.data.attributes.formats.large.height;
+  const width = pack.data.attributes.image.data.attributes.formats.large.width;
+  const title = pack.data.attributes.name;
+  const options = pack.data.attributes.prices;
+
+  // Total order price here
   const grandTotalInit: IGrandTotal[] = [];
   const [grandTotal, setGrandTotal] = useState<IGrandTotal[]>(grandTotalInit);
   const totArr = grandTotal.map((item: IGrandTotal) => item.price);
-  let totSum = 0;
+  let totSum: number = 0;
+  if (pack.data.attributes.priceValue) {
+    totSum = pack.data.attributes.priceValue;
+    totArr.push(totSum);
+  }
+
   if (totArr.length) {
     totSum = totArr.reduce((acc: number, cur: number) => acc + cur);
   }
 
-  const company: PurpleAttributes = props.company.data.attributes;
-  const social: ISocialDatum[] = props.social.data;
-  const prices: IPriceDatum[] = props.price!.data;
-  const packages: IPackageSetDatum[] = props.packages.data;
-  console.log(packages);
+  const Options: FC = () => {
+    return (
+      <Fragment>
+        <ul className="icon-list bullet-bg bullet-soft-green mb-0">
+          {options.data.map((item) => (
+            <li key={item.id}>
+              <span>
+                <i className="uil uil-check" />
+              </span>
+              <span>{item.attributes.name}</span>
+              <p
+                style={{ fontSize: '0.75rem', fontWeight: 300 }}
+                dangerouslySetInnerHTML={{ __html: item.attributes.description }}
+              ></p>
+            </li>
+          ))}
+        </ul>
+      </Fragment>
+    );
+  };
+
   // button color
   //   let btnColor = 'btn-primary';
   let btnColor = 'btn-soft-leaf';
@@ -77,9 +115,41 @@ const ShopTwo: NextPage<Props> = (props) => {
             <Breadcrumb data={breadcrumb} className="mb-0" />
           </div>
         </section>
+        <div className="container pt-6 pt-md-6">
+          <div className="row">
+            <div className="col-12">
+              <h1 className="mt-4 mb-4">You choose {pack.data.attributes.name}</h1>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-6">
+              <div className="card">
+                <div className="card-body">
+                  <Image src={src} alt={alt} height={height} width={width} style={{ width: '100%', height: '100%' }} />
+                </div>
+              </div>
+            </div>
+            <div className="col-6">
+              <div className="card shadow-lg">
+                <div className="card-body">
+                  <h5 className="card-title">Package included:</h5>
+                  <Options />
+                  {/* <p className="card-text">...</p> */}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div className="wrapper bg-light">
           <div className="container pt-12 pt-md-14 pb-14 pb-md-16">
+            <div className="row">
+              <div className="col-12">
+                <h2>
+                  Consider to add <span className="underline-3 style-1 leaf">services</span> to your package
+                </h2>
+              </div>
+            </div>
             <div className="row gx-md-8 gx-xl-12 gy-12">
               <div className="col-lg-8">
                 {/* ========== product list section ========== */}
@@ -146,9 +216,34 @@ const ShopTwo: NextPage<Props> = (props) => {
   );
 };
 
-export async function getStaticProps() {
+export const getStaticPaths: GetStaticPaths = async () => {
+  const package_res = await fetch('http://localhost:1337/api/package-sets');
+  const packages: IPackageSet = await package_res.json();
+  const idList = packages.data.map((item: IPackageSetDatum) => item.id);
+  const paths: string[] = [];
+  idList.forEach((id: number) => {
+    paths.push(`/prices/${id}`);
+  });
+  return { paths, fallback: true };
+};
+
+export const getStaticProps: GetStaticProps = async (context: any) => {
+  const id = context.params.id;
+
+  const package_res = await fetch(`http://localhost:1337/api/package-sets/${id}?populate=*`);
+  const pack: IPackage = await package_res.json();
+  const options = pack.data.attributes.prices.data;
+
+  let quryUrl = 'http://localhost:1337/api/prices?populate=*&';
+  const packageInclude = options.forEach((item, i) => {
+    // &filters[id][$notIn][1]=2
+    quryUrl += `filters[id][$notIn][${i}]=${item.id}&`;
+  });
+
+  quryUrl.slice(0, -1);
+
   //Prices fetching starts here
-  const price_res = await fetch('http://localhost:1337/api/prices?populate=*');
+  const price_res = await fetch(quryUrl);
   const price: IPrice = await price_res.json();
 
   //Company fetching starts here
@@ -158,17 +253,15 @@ export async function getStaticProps() {
   const social_res = await fetch('http://localhost:1337/api/social-medias');
   const social: ISocial = await social_res.json();
   //http://localhost:1337/api/package-sets?populate=*
-  const package_res = await fetch('http://localhost:1337/api/package-sets?populate=*');
-  const packages: IPackageSet = await package_res.json();
 
   return {
     props: {
       price,
       company,
       social,
-      packages
+      pack
     }
   };
-}
+};
 
 export default ShopTwo;

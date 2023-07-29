@@ -22,6 +22,7 @@ const CartListItem: FC<CartListItemProps> = (props) => {
   const [salePrice, setSalePrice] = useState(0);
   const [regularPrice, setRegularPrice] = useState(price.attributes.value);
   const [checked, setChecked] = useState(false);
+  console.log(price);
 
   let btnColor = 'btn-soft-leaf';
   let btnText = 'Add';
@@ -53,12 +54,28 @@ const CartListItem: FC<CartListItemProps> = (props) => {
   } catch {
     alt = 'Alt Text';
   }
-  const src = BACKEND_IMG_URL + price.attributes.thumbnail.data.attributes.formats.large.url;
+  // const src = BACKEND_IMG_URL + price.attributes.thumbnail.data.attributes.formats.large.url;
+  console.log(price.attributes.thumbnail.data.attributes.formats);
+  let src = '';
+  try {
+    if (price.attributes.thumbnail.data.attributes.formats.large) {
+      src = BACKEND_IMG_URL + price.attributes.thumbnail.data.attributes.formats.large.url;
+      const height = price.attributes.thumbnail.data.attributes.formats.large.height;
+      const width = price.attributes.thumbnail.data.attributes.formats.large.width;
+    } else if (price.attributes.thumbnail.data.attributes.formats.medium) {
+      src = BACKEND_IMG_URL + price.attributes.thumbnail.data.attributes.formats.medium.url;
+      const height = price.attributes.thumbnail.data.attributes.formats.medium.height;
+      const width = price.attributes.thumbnail.data.attributes.formats.medium.width;
+    } else if (price.attributes.thumbnail.data.attributes.formats.small) {
+      src = BACKEND_IMG_URL + price.attributes.thumbnail.data.attributes.formats.small.url;
+      const height = price.attributes.thumbnail.data.attributes.formats.small.height;
+      const width = price.attributes.thumbnail.data.attributes.formats.small.width;
+    }
+  } catch {
+    src = '/img/illustrations/i25.png';
+  }
   const sale = true;
   const newProduct = true;
-
-  const height = price.attributes.thumbnail.data.attributes.formats.large.height;
-  const width = price.attributes.thumbnail.data.attributes.formats.large.width;
 
   return (
     <tr>

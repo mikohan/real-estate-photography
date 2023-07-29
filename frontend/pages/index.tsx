@@ -57,7 +57,7 @@ const Demo3: NextPage<Props> = (props) => {
 
       {/* ========== header section ========== */}
       <header className="wrapper bg-dark">
-        <Navbar4Custom social={social} company={company} onePageDemo />
+        <Navbar4Custom showLogo social={social} company={company} onePageDemo />
       </header>
 
       <main className="content-wrapper">

@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "package_sets",
+  "info": {
+    "singularName": "package-set",
+    "pluralName": "package-sets",
+    "displayName": "PackageSet",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "prices": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::price.price",
+      "inversedBy": "package_sets"
+    },
+    "priceValue": {
+      "type": "integer"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

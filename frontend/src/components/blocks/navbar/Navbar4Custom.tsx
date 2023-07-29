@@ -7,7 +7,7 @@ import SocialLinksCustom from 'components/reuseable/SocialLinksCustom';
 // -------- partial header component -------- //
 import InfoCustom from './partials/InfoCustom';
 import Search from './partials/Search';
-import Navigations from './partials/Navigations';
+import NavigationsCustom from './partials/NavigationsCustom';
 import OnePageDemoLinksCustom from './partials/OnePageDemoLinksCustom';
 import { ISocialDatum } from 'interfaces/ISocial';
 import { PurpleAttributes } from 'interfaces/ICompany';
@@ -19,6 +19,7 @@ type Navbar4Props = {
   onePageDemo?: boolean;
   social: ISocialDatum[];
   company: PurpleAttributes;
+  showLogo: boolean;
 };
 export type ILink = { id: number; title: string; to: string; scroll?: boolean };
 
@@ -34,7 +35,7 @@ const linkList: ILink[] = [
   { id: 6, title: 'Contacts', to: 'contacts', scroll: true }
 ];
 
-const Navbar4Custom: FC<Navbar4Props> = ({ navClassName, onePageDemo, social, company }) => {
+const Navbar4Custom: FC<Navbar4Props> = ({ navClassName, onePageDemo, social, company, showLogo }) => {
   const sticky = useSticky(350);
   const navbarRef = useRef<HTMLElement | null>(null);
 
@@ -47,15 +48,17 @@ const Navbar4Custom: FC<Navbar4Props> = ({ navClassName, onePageDemo, social, co
 
       <nav ref={navbarRef} className={sticky ? fixedClassName : navClassName}>
         <div className="container flex-lg-column">
-          <div className="topbar d-flex flex-row justify-content-lg-center align-items-center">
-            <div className="navbar-brand">
-              <NextLink
-                href="/"
-                title={<img alt="logo" src="/img/logo-dark3.png" srcSet="/img/logo-dark@2x3.png 2x" />}
-              />
+          {showLogo && (
+            <div className="topbar d-flex flex-row justify-content-lg-center align-items-center">
+              <div className="navbar-brand">
+                <NextLink
+                  href="/"
+                  title={<img alt="logo" src="/img/logo-dark3.png" srcSet="/img/logo-dark@2x3.png 2x" />}
+                />
+              </div>
+              <div></div>
             </div>
-            <div></div>
-          </div>
+          )}
 
           <div className="navbar-collapse-wrapper bg-white d-flex flex-row align-items-center justify-content-between">
             {/* ============= left side content ============= */}
@@ -79,7 +82,7 @@ const Navbar4Custom: FC<Navbar4Props> = ({ navClassName, onePageDemo, social, co
               </div>
 
               <div className="offcanvas-body d-flex flex-column h-100">
-                {onePageDemo ? <OnePageDemoLinksCustom linkList={linkList} /> : <Navigations />}
+                {onePageDemo ? <OnePageDemoLinksCustom linkList={linkList} /> : <NavigationsCustom />}
 
                 {/* ============= show contact info in the small device sidebar ============= */}
                 <div className="offcanvas-footer d-lg-none">
