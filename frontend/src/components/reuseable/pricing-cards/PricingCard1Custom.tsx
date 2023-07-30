@@ -2,48 +2,42 @@ import { FC } from 'react';
 import Price from './Price';
 import NextLink from '../links/NextLink';
 import { urls } from 'utils/urls';
+import { IPackageSetDatum } from 'interfaces/IPackageSet';
 
 // ================================================================
 type PricingCard1Props = {
-  id: number;
-  features: string[];
-  bulletBg?: boolean;
-  yearlyPrice: number;
-  monthlyPrice: number;
-  activeYearly: boolean;
+  pack: IPackageSetDatum;
   roundedButton?: boolean;
+  bulletBg?: boolean;
 };
 // ================================================================
 
 const PricingCard1: FC<PricingCard1Props> = (props) => {
-  const { id, features, yearlyPrice, monthlyPrice, activeYearly, roundedButton, bulletBg } = props;
-
-  const yearClasses = activeYearly ? 'price-show' : 'price-hide price-hidden';
-  const monthClasses = !activeYearly ? 'price-show' : 'price-hide price-hidden';
+  const { pack, roundedButton, bulletBg } = props;
 
   return (
     <div className="pricing card shadow-lg">
       <div className="card-body pb-12">
-        <div className="prices text-dark">
+        {/* <div className="prices text-dark">
           <Price duration="mo" value={monthlyPrice} classes={monthClasses} />
           <Price duration="yr" value={yearlyPrice} classes={yearClasses} />
-        </div>
+        </div> */}
 
-        <h4 className="card-title mt-2">{id} Plan</h4>
+        <h4 className="card-title mt-2">{pack.attributes.name}</h4>
 
         <ul className={`icon-list ${bulletBg ? 'bullet-bg' : ''} bullet-soft-primary mt-7 mb-8`}>
-          {features.map((item, i) => (
+          {pack.attributes.prices.data.map((item, i) => (
             <li key={i}>
               <i className="uil uil-check fs-21" />
               <span>
-                <strong>{item.split(' ')[0]}</strong> {item.split(' ').slice(1).join(' ')}
+                <strong>{item.attributes.name}</strong>
               </span>
             </li>
           ))}
         </ul>
 
         <NextLink
-          href={urls.prices(id)}
+          href={urls.prices(pack.id)}
           title="Choose Plan"
           className={`btn btn-primary ${roundedButton ? 'rounded' : 'rounded-pill'}`}
         />

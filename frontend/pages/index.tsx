@@ -4,7 +4,7 @@ import { Fragment } from 'react';
 // -------- custom component -------- //
 import { Hero3 } from 'components/blocks/hero';
 import { Contact1 } from 'components/blocks/contact';
-import { Pricing3 } from 'components/blocks/pricing';
+import { Pricing3, Pricing3Custom } from 'components/blocks/pricing';
 import { Services4Custom } from 'components/blocks/services';
 import { CTA4Custom } from 'components/blocks/call-to-action';
 import PageProgress from 'components/common/PageProgress';
@@ -19,8 +19,7 @@ import Footer5Custom from 'components/blocks/footer/Footer5Custom';
 import { IMediaSet } from 'interfaces/IMediaSet';
 import { Portfolio1Custom360 } from 'components/blocks/portfolio';
 import Navbar4Custom from 'components/blocks/navbar/Navbar4Custom';
-// test component
-import { Test } from 'components/blocks/facts/SWRTest';
+import { IPackageSet } from 'interfaces/IPackageSet';
 
 type Props = {
   port1: IProject;
@@ -31,6 +30,7 @@ type Props = {
   company: ICompany;
   social: ISocial;
   panorama: IMediaSet;
+  pack: IPackageSet;
 };
 
 const Demo3: NextPage<Props> = (props) => {
@@ -45,6 +45,7 @@ const Demo3: NextPage<Props> = (props) => {
   const company: PurpleAttributes = props.company.data.attributes;
   const social: ISocialDatum[] = props.social.data;
   const mediaSet: IMediaSet = props.panorama;
+  const pack: IPackageSet = props.pack;
   //data.attributes.media.data
 
   // const serviceRE = 'Real Estate Photography';
@@ -67,7 +68,7 @@ const Demo3: NextPage<Props> = (props) => {
         <section className="wrapper bg-light">
           <div className="container pt-19 pt-md-21 pb-16 pb-md-18">
             {/* ========== our pricing section ========== */}
-            <Pricing3 />
+            <Pricing3Custom pack={pack} />
 
             {/* ========== what we do section ========== */}
             <section id="why-us">
@@ -137,7 +138,10 @@ export async function getStaticProps() {
 
   const panorama_res = await fetch('http://localhost:1337/api/images/1?populate=media');
   const panorama: IMediaSet = await panorama_res.json();
+  // Packages
 
+  const package_res = await fetch(`http://localhost:1337/api/package-sets?populate=*`);
+  const pack: IPackageSet = await package_res.json();
   // By returning { props: { posts } }, the Blog component
   // will receive `posts` as a prop at build time
 
@@ -150,7 +154,8 @@ export async function getStaticProps() {
       price,
       company,
       social,
-      panorama
+      panorama,
+      pack
     }
   };
 }

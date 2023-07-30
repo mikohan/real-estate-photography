@@ -22,7 +22,6 @@ const CartListItem: FC<CartListItemProps> = (props) => {
   const [salePrice, setSalePrice] = useState(0);
   const [regularPrice, setRegularPrice] = useState(price.attributes.value);
   const [checked, setChecked] = useState(false);
-  console.log(price);
 
   let btnColor = 'btn-soft-leaf';
   let btnText = 'Add';
@@ -55,7 +54,6 @@ const CartListItem: FC<CartListItemProps> = (props) => {
     alt = 'Alt Text';
   }
   // const src = BACKEND_IMG_URL + price.attributes.thumbnail.data.attributes.formats.large.url;
-  console.log(price.attributes.thumbnail.data.attributes.formats);
   let src = '';
   try {
     if (price.attributes.thumbnail.data.attributes.formats.large) {

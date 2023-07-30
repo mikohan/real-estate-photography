@@ -1,6 +1,7 @@
 import Pricing1 from './Pricing1';
 import Pricing2 from './Pricing2';
 import Pricing3 from './Pricing3';
+import Pricing3Custom from './Pricing3Custom';
 import Pricing4 from './Pricing4';
 import Pricing5 from './Pricing5';
 import Pricing6 from './Pricing6';
@@ -14,6 +15,7 @@ export {
   Pricing1,
   Pricing2,
   Pricing3,
+  Pricing3Custom,
   Pricing4,
   Pricing5,
   Pricing6,

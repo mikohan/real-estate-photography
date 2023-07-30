@@ -1,7 +1,7 @@
 const urls = {
   home: () => '/',
   shop: () => '/shop/listing',
-  prices: (planName: string) => `/prices/${planName.toLowerCase()}`
+  prices: (id: number) => `/prices/${id}`
 };
 
 export { urls };

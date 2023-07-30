@@ -54,6 +54,7 @@ const ShopTwo: NextPage<Props> = (props) => {
   const width = pack.data.attributes.image.data.attributes.formats.large.width;
   const title = pack.data.attributes.name;
   const options = pack.data.attributes.prices;
+  const packPrice = pack.data.attributes.priceValue;
 
   // Total order price here
   const grandTotalInit: IGrandTotal[] = [];
@@ -70,6 +71,11 @@ const ShopTwo: NextPage<Props> = (props) => {
   }
 
   const Options: FC = () => {
+    let optTotal = 0;
+    options.data.forEach((item) => {
+      optTotal += item.attributes.value;
+    });
+
     return (
       <Fragment>
         <ul className="icon-list bullet-bg bullet-soft-green mb-0">
@@ -78,6 +84,7 @@ const ShopTwo: NextPage<Props> = (props) => {
               <span>
                 <i className="uil uil-check" />
               </span>
+              <span>${item.attributes.value} </span>
               <span>{item.attributes.name}</span>
               <p
                 style={{ fontSize: '0.75rem', fontWeight: 300 }}
@@ -86,6 +93,19 @@ const ShopTwo: NextPage<Props> = (props) => {
             </li>
           ))}
         </ul>
+        <p className="card-text">
+          All services might cost you{' '}
+          <span className="text-gradient gradient-2" style={{ fontSize: '1.2rem', fontWeight: 600 }}>
+            ${optTotal}
+          </span>
+          . You save{' '}
+          <span
+            style={{ fontSize: '1.2rem', fontWeight: 600 }}
+            className="underline-3 style-3 aqua text-gradient gradient-6"
+          >
+            ${optTotal - packPrice}
+          </span>
+        </p>
       </Fragment>
     );
   };
@@ -110,31 +130,68 @@ const ShopTwo: NextPage<Props> = (props) => {
 
       <main className="content-wrapper">
         {/* ========== breadcrumb section ========== */}
-        <section className="wrapper bg-gray">
+        {/* <section className="wrapper bg-gray">
           <div className="container py-3 py-md-5">
             <Breadcrumb data={breadcrumb} className="mb-0" />
           </div>
-        </section>
+        </section> */}
         <div className="container pt-6 pt-md-6">
           <div className="row">
             <div className="col-12">
-              <h1 className="mt-4 mb-4">You choose {pack.data.attributes.name}</h1>
+              <h1 className="mt-4 mb-4">
+                Your package is {pack.data.attributes.name}. Package price is ${pack.data.attributes.priceValue}
+              </h1>
             </div>
           </div>
           <div className="row">
-            <div className="col-6">
-              <div className="card">
+            <div className="col-sm-12 col-md-6">
+              <div className="card shadow-lg my-2">
                 <div className="card-body">
-                  <Image src={src} alt={alt} height={height} width={width} style={{ width: '100%', height: '100%' }} />
+                  <h5 className="card-title">
+                    <span className="underline-3 style-3 leaf">Package includes:</span>
+                  </h5>
+                  <Options />
                 </div>
               </div>
             </div>
-            <div className="col-6">
-              <div className="card shadow-lg">
+            <div className="col-sm-12 col-md-6">
+              <div className="card my-2">
                 <div className="card-body">
-                  <h5 className="card-title">Package included:</h5>
-                  <Options />
-                  {/* <p className="card-text">...</p> */}
+                  <h2 style={{ fontSize: '1.2rem' }}>
+                    Consider to add <span className="underline-3 style-1 leaf">services</span> to your package
+                  </h2>
+                  <div className="table-responsive">
+                    <table className="table text-center shopping-cart">
+                      <tbody>
+                        {prices.map((item) => (
+                          <CartListItemCustom
+                            key={item.id}
+                            price={item}
+                            setGrandTotal={setGrandTotal}
+                            grandTotal={grandTotal}
+                          />
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  <div className="py-4">
+                    <h3 className="mb-4">Order Summary</h3>
+                    <div className="table-responsive">
+                      <table className="table table-order">
+                        <tbody>
+                          <tr>
+                            <td className="ps-0">
+                              <strong className="text-dark">Total Order</strong>
+                            </td>
+                            <td className="pe-0 text-end text-navy" style={{ fontWeight: 600, fontSize: '1.2rem' }}>
+                              ${totSum}
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <button className={`btn ${btnColor}  rounded w-100 mt-4`}>{btnText}</button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -142,69 +199,7 @@ const ShopTwo: NextPage<Props> = (props) => {
         </div>
 
         <div className="wrapper bg-light">
-          <div className="container pt-12 pt-md-14 pb-14 pb-md-16">
-            <div className="row">
-              <div className="col-12">
-                <h2>
-                  Consider to add <span className="underline-3 style-1 leaf">services</span> to your package
-                </h2>
-              </div>
-            </div>
-            <div className="row gx-md-8 gx-xl-12 gy-12">
-              <div className="col-lg-8">
-                {/* ========== product list section ========== */}
-                <div className="table-responsive">
-                  <table className="table text-center shopping-cart">
-                    <thead>
-                      <tr>
-                        {tableHeading.map(({ id, title }) => {
-                          const firstChild = id === 1;
-
-                          return (
-                            <th className={firstChild ? 'ps-0 w-25' : ''} key={id}>
-                              <div className={`h4 mb-0 ${firstChild ? 'text-start' : ''}`}>{title}</div>
-                            </th>
-                          );
-                        })}
-
-                        <th />
-                      </tr>
-                    </thead>
-
-                    <tbody>
-                      {prices.map((item) => (
-                        <CartListItemCustom
-                          key={item.id}
-                          price={item}
-                          setGrandTotal={setGrandTotal}
-                          grandTotal={grandTotal}
-                        />
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
-              {/* ========== order summary section ========== */}
-              <div className="col-lg-4">
-                <h3 className="mb-4">Order Summary</h3>
-                <div className="table-responsive">
-                  <table className="table table-order">
-                    <tbody>
-                      <tr>
-                        <td className="ps-0">
-                          <strong className="text-dark">Total Order</strong>
-                        </td>
-                        <td className="pe-0 text-end">${totSum}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-
-                <button className={`btn ${btnColor}  rounded w-100 mt-4`}>{btnText}</button>
-              </div>
-            </div>
-          </div>
+          <div className="container pt-12 pt-md-14 pb-14 pb-md-16">Some stuff here</div>
         </div>
 
         {/* ========== service section ========== */}
