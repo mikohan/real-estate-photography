@@ -144,7 +144,7 @@ const ShopTwo: NextPage<Props> = (props) => {
             </div>
           </div>
           <div className="row">
-            <div className="col-sm-12 col-md-6">
+            <div className="col-sm-12 col-md-5">
               <div className="card shadow-lg my-2">
                 <div className="card-body">
                   <h5 className="card-title">
@@ -154,7 +154,7 @@ const ShopTwo: NextPage<Props> = (props) => {
                 </div>
               </div>
             </div>
-            <div className="col-sm-12 col-md-6">
+            <div className="col-sm-12 col-md-7">
               <div className="card my-2">
                 <div className="card-body">
                   <h2 style={{ fontSize: '1.2rem' }}>
@@ -189,7 +189,7 @@ const ShopTwo: NextPage<Props> = (props) => {
                           </tr>
                         </tbody>
                       </table>
-                      <button className={`btn ${btnColor}  rounded w-100 mt-4`}>{btnText}</button>
+                      <button className={`btn ${btnColor} rounded mt-4`}>{btnText}</button>
                     </div>
                   </div>
                 </div>
