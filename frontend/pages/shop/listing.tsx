@@ -19,6 +19,8 @@ import { tableHeading } from 'data/cart-page';
 import CartListItemCustom from 'components/reuseable/CartListItemCustom';
 import { urls } from 'utils/urls';
 import { IPackageSet, IPackageSetDatum } from 'interfaces/IPackageSet';
+import { loadStripe } from '@stripe/stripe-js';
+import axios from 'axios';
 const breadcrumb = [
   { id: 1, title: 'Home', url: urls.home() },
   { id: 2, title: 'Shop', url: urls.shop() }
@@ -51,7 +53,6 @@ const ShopTwo: NextPage<Props> = (props) => {
   const social: ISocialDatum[] = props.social.data;
   const prices: IPriceDatum[] = props.price!.data;
   const packages: IPackageSetDatum[] = props.packages.data;
-  console.log(packages);
   // button color
   //   let btnColor = 'btn-primary';
   let btnColor = 'btn-soft-leaf';
@@ -60,6 +61,24 @@ const ShopTwo: NextPage<Props> = (props) => {
     btnColor = 'btn-outline-secondary';
     btnText = 'Add services to order';
   }
+  const stripePromise = loadStripe(
+    'pk_test_51NYAAsAOIjwuKYKnueiGoMSbBJqPX1S9C9hKfnFuogivf32dbKPb1mSnS6F7rvOgbi60aaKBNCmV5ZRpmPhz3gzz00Xj395Ekh'
+  );
+  const handlePayment = async () => {
+    try {
+      const stripe = await stripePromise;
+      const res = await axios.post('/orders', {
+        products
+      });
+      if (stripe) {
+        await stripe.redirectToCheckout({
+          sessionId: res.data.stripeSession.id
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <Fragment>
       <PageProgress />
@@ -131,7 +150,9 @@ const ShopTwo: NextPage<Props> = (props) => {
                   </table>
                 </div>
 
-                <button className={`btn ${btnColor}  rounded w-100 mt-4`}>{btnText}</button>
+                <button className={`btn ${btnColor}  rounded w-100 mt-4`} onClick={handlePayment}>
+                  {btnText}
+                </button>
               </div>
             </div>
           </div>

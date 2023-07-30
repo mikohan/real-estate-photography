@@ -28,7 +28,7 @@ export type ILink = { id: number; title: string; to: string; scroll?: boolean };
 // -------- data -------- //
 const linkList: ILink[] = [
   { id: 1, title: 'Home', to: urls.home(), scroll: false },
-  { id: 2, title: 'Shop Services', to: urls.shop(), scroll: false },
+  { id: 2, title: 'A La Cart', to: urls.shop(), scroll: false },
   { id: 3, title: 'Pricing', to: 'pricing', scroll: true },
   { id: 4, title: 'Why Us', to: 'why-us', scroll: true },
   { id: 5, title: 'Portfolio', to: 'portfolio', scroll: true },

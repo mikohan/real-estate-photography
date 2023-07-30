@@ -12,6 +12,8 @@
   "dependencies": {
     "@popperjs/core": "^2.11.6",
     "@reduxjs/toolkit": "^1.9.5",
+    "@stripe/react-stripe-js": "^2.1.1",
+    "@stripe/stripe-js": "^1.54.1",
     "animate.css": "^4.1.1",
     "axios": "^1.4.0",
     "bootstrap": "^5.2.3",
@@ -32,6 +34,7 @@
     "react-syntax-highlighter": "^15.5.0",
     "scrollcue": "^2.0.0",
     "sharp": "^0.31.3",
+    "stripe": "^12.16.0",
     "swiper": "^9.1.0",
     "typewriter-effect": "^2.19.0"
   },

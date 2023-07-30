@@ -12,7 +12,7 @@ const Navigations: FC = () => {
   return (
     <ul className="navbar-nav">
       <ListItemLink href={urls.home()} title="Home" />
-      <ListItemLink href={urls.shop()} title="Shop Services" />
+      <ListItemLink href={urls.shop()} title="A La Cart" />
     </ul>
   );
 };
