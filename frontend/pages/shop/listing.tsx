@@ -67,8 +67,13 @@ const ShopTwo: NextPage<Props> = (props) => {
   const handlePayment = async () => {
     try {
       const stripe = await stripePromise;
-      const res = await axios.post('/orders', {
-        products
+      const res = await axios.post('http://localhost:1337/api/orders', {
+        products: [
+          {
+            id: 8,
+            title: 'Full Package'
+          }
+        ]
       });
       if (stripe) {
         await stripe.redirectToCheckout({
