@@ -78,7 +78,7 @@ const CartListItem: FC<CartListItemProps> = (props) => {
   return (
     <tr>
       <td className="option text-start d-flex flex-row align-items-center ps-0">
-        <figure className="rounded w-17">
+        <figure className="rounded w-17 d-none d-sm-none d-md-block">
           <Link href="#" passHref legacyBehavior>
             <a>
               <Image width={90} height={100} src={src} alt="product" style={{ width: '100%', height: 'auto' }} />
@@ -90,6 +90,7 @@ const CartListItem: FC<CartListItemProps> = (props) => {
           <h3 className="post-title h6 lh-xs mb-1">
             <NextLink title={price.attributes.name} href="#" className="link-dark" />
             <p
+              className="d-sm-none d-none d-md-block"
               style={{ fontSize: '70%', fontWeight: 300 }}
               dangerouslySetInnerHTML={{ __html: price.attributes.description }}
             ></p>
@@ -114,7 +115,7 @@ const CartListItem: FC<CartListItemProps> = (props) => {
         </p>
       </td>
 
-      <td style={{ textAlign: 'center' }}>
+      <td className="d-sm-none d-none d-md-block" style={{ textAlign: 'center' }}>
         <div className="form-check">
           <input
             className="form-check-input"

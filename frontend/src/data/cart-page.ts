@@ -7,7 +7,7 @@ const breadcrumb = [
 const tableHeading = [
   { id: 1, title: 'Product' },
   { id: 2, title: 'Price' },
-  { id: 3, title: 'In Order' },
+  { id: 3, title: 'Order' },
   { id: 4, title: 'Add' }
 ];
 

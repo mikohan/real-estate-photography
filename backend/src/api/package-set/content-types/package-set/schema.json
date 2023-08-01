@@ -21,7 +21,7 @@
       "target": "api::price.price",
       "inversedBy": "package_sets"
     },
-    "priceValue": {
+    "value": {
       "type": "integer"
     },
     "image": {

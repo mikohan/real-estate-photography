@@ -17,7 +17,7 @@ export interface PurpleAttributes {
   createdAt: Date;
   updatedAt: Date;
   publishedAt: Date;
-  priceValue: number;
+  value: number;
   prices: Prices;
   image: Image;
 }

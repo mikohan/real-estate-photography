@@ -19,9 +19,6 @@ import { tableHeading } from 'data/cart-page';
 import CartListItemCustom from 'components/reuseable/CartListItemCustom';
 import { urls } from 'utils/urls';
 import { IPackageSet, IPackageSetDatum } from 'interfaces/IPackageSet';
-import { loadStripe } from '@stripe/stripe-js';
-import axios from 'axios';
-import { BACKEND_API_URL } from 'config';
 import Link from 'next/link';
 const breadcrumb = [
   { id: 1, title: 'Home', url: urls.home() },
@@ -51,7 +48,6 @@ const ShopTwo: NextPage<Props> = (props) => {
   if (totArr.length) {
     totSum = totArr.reduce((acc: number, cur: number) => acc + cur);
   }
-  console.log('in tot art', idArr);
 
   const company: PurpleAttributes = props.company.data.attributes;
   const social: ISocialDatum[] = props.social.data;
@@ -65,29 +61,6 @@ const ShopTwo: NextPage<Props> = (props) => {
     btnColor = 'btn-outline-secondary';
     btnText = 'Add services to order';
   }
-  const stripePromise = loadStripe(
-    'pk_test_51NYAAsAOIjwuKYKnueiGoMSbBJqPX1S9C9hKfnFuogivf32dbKPb1mSnS6F7rvOgbi60aaKBNCmV5ZRpmPhz3gzz00Xj395Ekh'
-  );
-  const handlePayment = async () => {
-    try {
-      const stripe = await stripePromise;
-      const res = await axios.post(BACKEND_API_URL + '/api/orders', {
-        products: [
-          {
-            id: 8,
-            title: 'Full Package'
-          }
-        ]
-      });
-      if (stripe) {
-        await stripe.redirectToCheckout({
-          sessionId: res.data.stripeSession.id
-        });
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
   return (
     <Fragment>
       <PageProgress />
@@ -117,14 +90,17 @@ const ShopTwo: NextPage<Props> = (props) => {
                       <tr>
                         {tableHeading.map(({ id, title }) => {
                           const firstChild = id === 1;
-
                           return (
                             <th className={firstChild ? 'ps-0 w-25' : ''} key={id}>
-                              <div className={`h4 mb-0 ${firstChild ? 'text-start' : ''}`}>{title}</div>
+                              <div
+                                style={{ fontSize: '0.8rem' }}
+                                className={`h4 mb-0 ${firstChild ? 'text-start' : ''}`}
+                              >
+                                {title}
+                              </div>
                             </th>
                           );
                         })}
-
                         <th />
                       </tr>
                     </thead>

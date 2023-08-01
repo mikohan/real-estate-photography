@@ -25,13 +25,19 @@ const { createCoreController } = require("@strapi/strapi").factories;
 module.exports = createCoreController("api::order.order", ({ strapi }) => ({
   async create(ctx) {
     const { products } = ctx.request.body;
+    const { formData } = ctx.request.body;
     try {
       const lineItems = await Promise.all(
         products.map(async (product) => {
-          const item = await strapi
-            .service("api::price.price")
-            .findOne(product.id);
-          console.log("ITEM", item);
+          let item = null;
+          if (product.type === "price") {
+            item = await strapi.service("api::price.price").findOne(product.id);
+          }
+          if (product.type === "pack") {
+            item = await strapi
+              .service("api::package-set.package-set")
+              .findOne(product.id);
+          }
           return {
             price_data: {
               currency: "usd",
@@ -52,14 +58,20 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
         cancel_url: process.env.CLIENT_URL + "/fail",
         line_items: lineItems,
       });
-      console.log("SESSION", session);
       await strapi.service("api::order.order").create({
         data: {
           products,
           stripeid: session.id,
-          email: session.email,
-          phone: session.phone,
-          name: session.name,
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          phone: formData.phone,
+          address1: formData.address1,
+          address2: formData.address2,
+          country: formData.country,
+          state: formData.state,
+          zip: formData.zip,
+          amount: formData.total,
         },
       });
       return { stripeSession: session };

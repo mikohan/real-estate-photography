@@ -26,7 +26,7 @@ const PricingCard1: FC<PricingCard1Props> = (props) => {
         <h4 className="card-title mt-2">
           {pack.attributes.name}
           <strong>
-            <span className="underline-3 style-3 leaf"> ${pack.attributes.priceValue}</span>
+            <span className="underline-3 style-3 leaf"> ${pack.attributes.value}</span>
           </strong>
         </h4>
 

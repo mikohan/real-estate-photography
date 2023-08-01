@@ -54,15 +54,15 @@ const ShopTwo: NextPage<Props> = (props) => {
   const width = pack.data.attributes.image.data.attributes.formats.large.width;
   const title = pack.data.attributes.name;
   const options = pack.data.attributes.prices;
-  const packPrice = pack.data.attributes.priceValue;
+  const packPrice = pack.data.attributes.value;
 
   // Total order price here
   const grandTotalInit: IGrandTotal[] = [];
   const [grandTotal, setGrandTotal] = useState<IGrandTotal[]>(grandTotalInit);
   const totArr = grandTotal.map((item: IGrandTotal) => item.price);
   let totSum: number = 0;
-  if (pack.data.attributes.priceValue) {
-    totSum = pack.data.attributes.priceValue;
+  if (pack.data.attributes.value) {
+    totSum = pack.data.attributes.value;
     totArr.push(totSum);
   }
 
@@ -139,7 +139,7 @@ const ShopTwo: NextPage<Props> = (props) => {
           <div className="row">
             <div className="col-12">
               <h1 className="mt-4 mb-4">
-                Your package is {pack.data.attributes.name}. Package price is ${pack.data.attributes.priceValue}
+                Your package is {pack.data.attributes.name}. Package price is ${pack.data.attributes.value}
               </h1>
             </div>
           </div>

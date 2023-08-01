@@ -27,7 +27,25 @@
     "phone": {
       "type": "string"
     },
-    "name": {
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "address1": {
+      "type": "string"
+    },
+    "address2": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "zip": {
       "type": "string"
     }
   }
