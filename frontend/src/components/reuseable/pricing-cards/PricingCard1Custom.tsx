@@ -23,7 +23,12 @@ const PricingCard1: FC<PricingCard1Props> = (props) => {
           <Price duration="yr" value={yearlyPrice} classes={yearClasses} />
         </div> */}
 
-        <h4 className="card-title mt-2">{pack.attributes.name}</h4>
+        <h4 className="card-title mt-2">
+          {pack.attributes.name}
+          <strong>
+            <span className="underline-3 style-3 leaf"> ${pack.attributes.priceValue}</span>
+          </strong>
+        </h4>
 
         <ul className={`icon-list ${bulletBg ? 'bullet-bg' : ''} bullet-soft-primary mt-7 mb-8`}>
           {pack.attributes.prices.data.map((item, i) => (
@@ -35,7 +40,6 @@ const PricingCard1: FC<PricingCard1Props> = (props) => {
             </li>
           ))}
         </ul>
-
         <NextLink
           href={urls.prices(pack.id)}
           title="Choose Plan"

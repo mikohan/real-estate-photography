@@ -1,4 +1,4 @@
-import { NextPage } from 'next';
+import { GetServerSideProps, GetServerSidePropsContext, GetStaticPropsContext, NextPage } from 'next';
 import { Fragment } from 'react';
 import currency from 'utils/currency';
 // -------- custom component -------- //
@@ -11,8 +11,20 @@ import { ProductCard2 } from 'components/reuseable/product-cards';
 import { Checkbox, Input, Select } from 'components/elements/checkout-form';
 // -------- data -------- //
 import { breadcrumb, orderProducts, orderSummeryRow } from 'data/checkout-page';
+import { IPrice } from 'interfaces/IPrice';
+import { ICompany } from 'interfaces/ICompany';
+import { ISocial } from 'interfaces/ISocial';
+import { IPackageSet } from 'interfaces/IPackageSet';
+import { BACKEND_API_URL } from 'config';
 
-const Checkout: NextPage = () => {
+type Props = {
+  price?: IPrice;
+  company: ICompany;
+  social: ISocial;
+  pack: IPackageSet;
+};
+const Checkout: NextPage<Props> = ({ price, company, social, pack }) => {
+  const total = 123;
   return (
     <Fragment>
       <PageProgress />
@@ -55,6 +67,9 @@ const Checkout: NextPage = () => {
                     <div className="col-12">
                       <Input type="email" id="email" placeholder="you@example.com" label="Email" />
                     </div>
+                    <div className="col-12">
+                      <Input type="phone" id="phone" placeholder="(951) 000-00-00" label="Phone" />
+                    </div>
 
                     <div className="col-12">
                       <Input type="text" id="address" placeholder="1234 Main St" label="Address" />
@@ -88,61 +103,6 @@ const Checkout: NextPage = () => {
                   </div>
 
                   <hr className="mt-7 mb-6" />
-
-                  <Checkbox
-                    defaultChecked
-                    id="same-address"
-                    label="Shipping address is the same as my billing address"
-                  />
-                  <Checkbox id="save-info" label="Save this information for next time" />
-
-                  <hr className="mt-7 mb-6" />
-                  <h3 className="mb-4">Payment</h3>
-
-                  <div className="mt-3 mb-6">
-                    <Checkbox
-                      required
-                      id="credit"
-                      type="radio"
-                      defaultChecked
-                      label="Credit card"
-                      name="paymentMethod"
-                    />
-                    <Checkbox type="radio" name="paymentMethod" id="debit" label="Debit card" required />
-                    <Checkbox type="radio" name="paymentMethod" id="paypal" label="PayPal" required />
-                  </div>
-
-                  <div className="row">
-                    <div className="col-xl-8">
-                      <div className="row gy-3 gx-3">
-                        <div className="col-md-12">
-                          <Input
-                            type="text"
-                            id="cc-number"
-                            label="Credit card number"
-                            placeholder="Credit card number"
-                          />
-                        </div>
-
-                        <div className="col-md-6">
-                          <Input type="text" id="cc-name" label="Credit card number" placeholder="Name on card" />
-                        </div>
-
-                        <div className="col-md-3">
-                          <Input
-                            type="text"
-                            id="cc-expiration"
-                            placeholder="Expiration"
-                            label="Expiration date required"
-                          />
-                        </div>
-
-                        <div className="col-md-3">
-                          <Input type="text" id="cc-cvv" placeholder="CVV" label="Security code required" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </form>
               </div>
 
@@ -157,50 +117,20 @@ const Checkout: NextPage = () => {
                 </div>
 
                 <hr className="my-4" />
-                <h3 className="mb-2">Shipping</h3>
-
-                <div className="mb-5">
-                  <div className="form-check mb-2">
-                    <input id="standard" name="shippingMethod" type="radio" className="form-check-input" required />
-                    <label className="form-check-label" htmlFor="standard">
-                      Free - Standard delivery
-                    </label>
-                    <small className="text-muted d-block">Shipment may take 5-6 business days</small>
-                  </div>
-
-                  <div className="form-check">
-                    <input
-                      required
-                      id="express"
-                      type="radio"
-                      defaultChecked
-                      name="shippingMethod"
-                      className="form-check-input"
-                    />
-                    <label className="form-check-label" htmlFor="express">
-                      $10 - Express delivery
-                    </label>
-                    <small className="text-muted d-block">Shipment may take 2-3 business days</small>
-                  </div>
-                </div>
+                <h3 className="mb-2">Order</h3>
 
                 <div className="table-responsive">
                   <table className="table table-order">
                     <tbody>
-                      {orderSummeryRow.map(({ name, value }) => (
-                        <tr key={name}>
-                          <td className="ps-0">
-                            <strong className="text-dark">{name}</strong>
-                          </td>
+                      <tr>
+                        <td className="ps-0">
+                          <strong className="text-dark">Grand Total</strong>
+                        </td>
 
-                          <td className={value.parentClass}>
-                            <p className={value.childClass}>
-                              {name === 'Discount' && '-'}
-                              {currency(value.amount)}
-                            </p>
-                          </td>
-                        </tr>
-                      ))}
+                        <td>
+                          <p>${total}</p>
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -222,5 +152,63 @@ const Checkout: NextPage = () => {
     </Fragment>
   );
 };
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  console.log('HERE IS PARAMS', context.query);
+  // Call an external API endpoint to get posts.
+  // You can use any data fetching library
+  const queryBuilder = (arr: string[], model: string) => {
+    let url = BACKEND_API_URL + `${model}?`;
+    arr.forEach((item, i) => {
+      url += `populate=image&filters[id][$in][${i}]=${item}&`;
+    });
+    return url.slice(0, -1);
+  };
+
+  let arr: string[] = [];
+  if (Array.isArray(context.query.price_id)) {
+    arr = context.query.price_id;
+  } else if (context.query.price_id) {
+    arr.push(context.query.price_id);
+  }
+
+  const urlPrices = queryBuilder(arr, 'prices');
+
+  let arrPack: string[] = [];
+  if (Array.isArray(context.query.pack_id)) {
+    arrPack = context.query.pack_id;
+  } else if (context.query.pack_id) {
+    arrPack.push(context.query.pack_id);
+  }
+  const urlPacks = queryBuilder(arrPack, 'package-sets');
+  console.log(urlPacks);
+
+  //Prices fetching starts here
+  const price_res = await fetch(urlPrices);
+  const price: IPrice = await price_res.json();
+
+  //Company fetching starts here
+  const comp_res = await fetch('http://localhost:1337/api/company?populate=companyMainPhoto');
+  const company: ICompany = await comp_res.json();
+
+  const social_res = await fetch('http://localhost:1337/api/social-medias');
+  const social: ISocial = await social_res.json();
+  // Getting panorama data
+
+  // Packages
+  const package_res = await fetch(`http://localhost:1337/api/package-sets?populate=*`);
+  const pack: IPackageSet = await package_res.json();
+  // By returning { props: { posts } }, the Blog component
+  // will receive `posts` as a prop at build time
+
+  return {
+    props: {
+      price,
+      company,
+      social,
+      pack
+    }
+  };
+}
 
 export default Checkout;

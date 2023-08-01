@@ -22,6 +22,7 @@ import { IPackageSet, IPackageSetDatum } from 'interfaces/IPackageSet';
 import { loadStripe } from '@stripe/stripe-js';
 import axios from 'axios';
 import { BACKEND_API_URL } from 'config';
+import Link from 'next/link';
 const breadcrumb = [
   { id: 1, title: 'Home', url: urls.home() },
   { id: 2, title: 'Shop', url: urls.shop() }
@@ -45,10 +46,12 @@ const ShopTwo: NextPage<Props> = (props) => {
   const grandTotalInit: IGrandTotal[] = [];
   const [grandTotal, setGrandTotal] = useState<IGrandTotal[]>(grandTotalInit);
   const totArr = grandTotal.map((item: IGrandTotal) => item.price);
+  const idArr = grandTotal.map((item: IGrandTotal) => item.id);
   let totSum = 0;
   if (totArr.length) {
     totSum = totArr.reduce((acc: number, cur: number) => acc + cur);
   }
+  console.log('in tot art', idArr);
 
   const company: PurpleAttributes = props.company.data.attributes;
   const social: ISocialDatum[] = props.social.data;
@@ -156,7 +159,16 @@ const ShopTwo: NextPage<Props> = (props) => {
                   </table>
                 </div>
 
-                <button className={`btn ${btnColor}  rounded w-100 mt-4`}>{btnText}</button>
+                <Link
+                  href={{
+                    pathname: urls.checkout(),
+                    query: {
+                      price_id: idArr
+                    }
+                  }}
+                >
+                  <button className={`btn ${btnColor}  rounded w-100 mt-4`}>{btnText}</button>
+                </Link>
               </div>
             </div>
           </div>
