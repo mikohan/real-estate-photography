@@ -23,6 +23,7 @@ import CartListItemCustom from 'components/reuseable/CartListItemCustom';
 import { urls } from 'utils/urls';
 import { IPackageSet, IPackage, IPackageSetDatum } from 'interfaces/IPackageSet';
 import { BACKEND_IMG_URL, BACKEND_API_URL } from 'config';
+import Link from 'next/link';
 const breadcrumb = [
   { id: 1, title: 'Home', url: urls.home() },
   { id: 2, title: 'Shop', url: urls.shop() }
@@ -55,10 +56,14 @@ const ShopTwo: NextPage<Props> = (props) => {
   const title = pack.data.attributes.name;
   const options = pack.data.attributes.prices;
   const packPrice = pack.data.attributes.value;
+  // Array of ids for package pricing
+  const idArrPack = [pack.data.id];
 
   // Total order price here
   const grandTotalInit: IGrandTotal[] = [];
   const [grandTotal, setGrandTotal] = useState<IGrandTotal[]>(grandTotalInit);
+  let idArr = [pack.data.id];
+  idArr = grandTotal.map((item: IGrandTotal) => item.id);
   const totArr = grandTotal.map((item: IGrandTotal) => item.price);
   let totSum: number = 0;
   if (pack.data.attributes.value) {
@@ -189,7 +194,18 @@ const ShopTwo: NextPage<Props> = (props) => {
                           </tr>
                         </tbody>
                       </table>
-                      <button className={`btn ${btnColor} rounded mt-4`}>{btnText}</button>
+
+                      <Link
+                        href={{
+                          pathname: urls.checkout(),
+                          query: {
+                            price_id: idArr,
+                            pack_id: idArrPack
+                          }
+                        }}
+                      >
+                        <button className={`btn ${btnColor} rounded mt-4`}>{btnText}</button>
+                      </Link>
                     </div>
                   </div>
                 </div>

@@ -6,10 +6,11 @@ import NextLink from './links/NextLink';
 import { IPrice, IPriceDatum } from 'interfaces/IPrice';
 import { BACKEND_IMG_URL } from 'config';
 import { IGrandTotal } from 'interfaces/IListing';
+import { IPackageSetDatum } from 'interfaces/IPackageSet';
 
 // =============================================================
 type CartListItemProps = {
-  price: IPriceDatum;
+  price: IPackageSetDatum;
   setGrandTotal: React.Dispatch<SetStateAction<IGrandTotal[]>>;
   grandTotal: IGrandTotal[];
 };
@@ -47,27 +48,27 @@ const CartListItem: FC<CartListItemProps> = (props) => {
 
   let alt: string = '';
   try {
-    alt = price.attributes.thumbnail.data.attributes.alternativeText
-      ? price.attributes.thumbnail.data.attributes.alternativeText
+    alt = price.attributes.image.data.attributes.alternativeText
+      ? price.attributes.image.data.attributes.alternativeText
       : 'Alt Text';
   } catch {
     alt = 'Alt Text';
   }
-  // const src = BACKEND_IMG_URL + price.attributes.thumbnail.data.attributes.formats.large.url;
+  // const src = BACKEND_IMG_URL + price.attributes.image.data.attributes.formats.large.url;
   let src = '';
   try {
-    if (price.attributes.thumbnail.data.attributes.formats.large) {
-      src = BACKEND_IMG_URL + price.attributes.thumbnail.data.attributes.formats.large.url;
-      const height = price.attributes.thumbnail.data.attributes.formats.large.height;
-      const width = price.attributes.thumbnail.data.attributes.formats.large.width;
-    } else if (price.attributes.thumbnail.data.attributes.formats.medium) {
-      src = BACKEND_IMG_URL + price.attributes.thumbnail.data.attributes.formats.medium.url;
-      const height = price.attributes.thumbnail.data.attributes.formats.medium.height;
-      const width = price.attributes.thumbnail.data.attributes.formats.medium.width;
-    } else if (price.attributes.thumbnail.data.attributes.formats.small) {
-      src = BACKEND_IMG_URL + price.attributes.thumbnail.data.attributes.formats.small.url;
-      const height = price.attributes.thumbnail.data.attributes.formats.small.height;
-      const width = price.attributes.thumbnail.data.attributes.formats.small.width;
+    if (price.attributes.image.data.attributes.formats.large) {
+      src = BACKEND_IMG_URL + price.attributes.image.data.attributes.formats.large.url;
+      const height = price.attributes.image.data.attributes.formats.large.height;
+      const width = price.attributes.image.data.attributes.formats.large.width;
+    } else if (price.attributes.image.data.attributes.formats.medium) {
+      src = BACKEND_IMG_URL + price.attributes.image.data.attributes.formats.medium.url;
+      const height = price.attributes.image.data.attributes.formats.medium.height;
+      const width = price.attributes.image.data.attributes.formats.medium.width;
+    } else if (price.attributes.image.data.attributes.formats.small) {
+      src = BACKEND_IMG_URL + price.attributes.image.data.attributes.formats.small.url;
+      const height = price.attributes.image.data.attributes.formats.small.height;
+      const width = price.attributes.image.data.attributes.formats.small.width;
     }
   } catch {
     src = '/img/illustrations/i25.png';
@@ -87,11 +88,13 @@ const CartListItem: FC<CartListItemProps> = (props) => {
           <h6 className="post-title h6 lh-xs mb-1" style={{ fontSize: '80%' }}>
             {price.attributes.name}
           </h6>
-          <p
-            className="d-sm-none d-none d-md-none d-lg-block"
-            style={{ fontSize: '70%', fontWeight: 300 }}
-            dangerouslySetInnerHTML={{ __html: price.attributes.description }}
-          ></p>
+          <p className="d-sm-none d-none d-md-none d-lg-block" style={{ fontSize: '70%', fontWeight: 300 }}>
+            <ul>
+              {price.attributes.prices.data.map((item) => (
+                <li key={item.id}>{item.attributes.name}</li>
+              ))}
+            </ul>
+          </p>
         </div>
       </td>
       <td>
