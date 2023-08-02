@@ -149,17 +149,7 @@ const ShopTwo: NextPage<Props> = (props) => {
             </div>
           </div>
           <div className="row">
-            <div className="col-sm-12 col-md-5">
-              <div className="card shadow-lg my-2">
-                <div className="card-body">
-                  <h5 className="card-title">
-                    <span className="underline-3 style-3 leaf">Package includes:</span>
-                  </h5>
-                  <Options />
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-12 col-md-7">
+            <div className="col-sm-12 col-md-6">
               <div className="card my-2">
                 <div className="card-body">
                   <h2 style={{ fontSize: '1.2rem' }}>
@@ -179,35 +169,17 @@ const ShopTwo: NextPage<Props> = (props) => {
                       </tbody>
                     </table>
                   </div>
-                  <div className="py-4">
-                    <h3 className="mb-4">Order Summary</h3>
-                    <div className="table-responsive">
-                      <table className="table table-order">
-                        <tbody>
-                          <tr>
-                            <td className="ps-0">
-                              <strong className="text-dark">Total Order</strong>
-                            </td>
-                            <td className="pe-0 text-end text-navy" style={{ fontWeight: 600, fontSize: '1.2rem' }}>
-                              ${totSum}
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-
-                      <Link
-                        href={{
-                          pathname: urls.checkout(),
-                          query: {
-                            price_id: idArr,
-                            pack_id: idArrPack
-                          }
-                        }}
-                      >
-                        <button className={`btn ${btnColor} rounded mt-4`}>{btnText}</button>
-                      </Link>
-                    </div>
-                  </div>
+                  Total is: ${totSum}
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-12 col-md-6">
+              <div className="card shadow-lg my-2">
+                <div className="card-body">
+                  <h5 className="card-title">
+                    <span className="underline-3 style-3 leaf">Package includes:</span>
+                  </h5>
+                  <Options />
                 </div>
               </div>
             </div>
@@ -215,7 +187,37 @@ const ShopTwo: NextPage<Props> = (props) => {
         </div>
 
         <div className="wrapper bg-light">
-          <div className="container pt-12 pt-md-14 pb-14 pb-md-16">Some stuff here</div>
+          <div className="container pt-6 pt-md-6 pb-6 pb-md-6">
+            <div className="py-4">
+              <h3 className="mb-4">Order Summary</h3>
+              <div className="table-responsive">
+                <table className="table table-order">
+                  <tbody>
+                    <tr>
+                      <td className="ps-0">
+                        <strong className="text-dark">Total Order</strong>
+                      </td>
+                      <td className="pe-0 text-end text-navy" style={{ fontWeight: 600, fontSize: '1.2rem' }}>
+                        ${totSum}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <Link
+                  href={{
+                    pathname: urls.checkout(),
+                    query: {
+                      price_id: idArr,
+                      pack_id: idArrPack
+                    }
+                  }}
+                >
+                  <button className={`btn ${btnColor} rounded mt-4`}>{btnText}</button>
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* ========== service section ========== */}
