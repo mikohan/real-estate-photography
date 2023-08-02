@@ -5,7 +5,6 @@ import { urls } from 'utils/urls';
 
 // ================================================================
 type PricingCard1Props = {
-  id: number;
   features: string[];
   bulletBg?: boolean;
   yearlyPrice: number;
@@ -16,7 +15,7 @@ type PricingCard1Props = {
 // ================================================================
 
 const PricingCard1: FC<PricingCard1Props> = (props) => {
-  const { id, features, yearlyPrice, monthlyPrice, activeYearly, roundedButton, bulletBg } = props;
+  const { features, yearlyPrice, monthlyPrice, activeYearly, roundedButton, bulletBg } = props;
 
   const yearClasses = activeYearly ? 'price-show' : 'price-hide price-hidden';
   const monthClasses = !activeYearly ? 'price-show' : 'price-hide price-hidden';
@@ -29,7 +28,7 @@ const PricingCard1: FC<PricingCard1Props> = (props) => {
           <Price duration="yr" value={yearlyPrice} classes={yearClasses} />
         </div>
 
-        <h4 className="card-title mt-2">{id} Plan</h4>
+        <h4 className="card-title mt-2"> Plan</h4>
 
         <ul className={`icon-list ${bulletBg ? 'bullet-bg' : ''} bullet-soft-primary mt-7 mb-8`}>
           {features.map((item, i) => (
@@ -43,7 +42,7 @@ const PricingCard1: FC<PricingCard1Props> = (props) => {
         </ul>
 
         <NextLink
-          href={urls.prices(id)}
+          href="#"
           title="Choose Plan"
           className={`btn btn-primary ${roundedButton ? 'rounded' : 'rounded-pill'}`}
         />

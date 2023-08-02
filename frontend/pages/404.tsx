@@ -5,16 +5,15 @@ import { Navbar } from 'components/blocks/navbar';
 import { Footer8 } from 'components/blocks/footer';
 import FigureImage from 'components/reuseable/FigureImage';
 import NextLink from 'components/reuseable/links/NextLink';
+import Navbar4Custom from 'components/blocks/navbar/Navbar4Custom';
+import Footer5Custom from 'components/blocks/footer/Footer5Custom';
 
 const NotFound: NextPage = () => {
   return (
     <Fragment>
       {/* ========== header section ========== */}
       <header className="wrapper bg-light">
-        <Navbar
-          language
-          button={<NextLink title="Contact" href="#" className="btn btn-sm btn-primary rounded-pill" />}
-        />
+        <Navbar4Custom showLogo />
       </header>
 
       <main className="content-wrapper">
@@ -40,7 +39,7 @@ const NotFound: NextPage = () => {
       </main>
 
       {/* ========== footer section ========== */}
-      <Footer8 />
+      <Footer5Custom />
     </Fragment>
   );
 };

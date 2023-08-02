@@ -3,7 +3,7 @@ import { FC, Fragment, useRef } from 'react';
 import useSticky from 'hooks/useSticky';
 // -------- custom component -------- //
 import NextLink from 'components/reuseable/links/NextLink';
-import SocialLinksCustom from 'components/reuseable/SocialLinksCustom';
+import SocialLinks from 'components/reuseable/SocialLinks';
 // -------- partial header component -------- //
 import Info from './partials/Info';
 import Search from './partials/Search';
@@ -13,10 +13,10 @@ import { ISocialDatum } from 'interfaces/ISocial';
 import { PurpleAttributes } from 'interfaces/ICompany';
 
 // ===================================================================
-type Navbar4Props = { navClassName?: string; onePageDemo?: boolean; social: ISocialDatum[]; company: PurpleAttributes };
+type Navbar4Props = { navClassName?: string; onePageDemo?: boolean };
 // ===================================================================
 
-const Navbar4: FC<Navbar4Props> = ({ navClassName, onePageDemo, social, company }) => {
+const Navbar4: FC<Navbar4Props> = ({ navClassName, onePageDemo }) => {
   const sticky = useSticky(350);
   const navbarRef = useRef<HTMLElement | null>(null);
 
@@ -41,7 +41,7 @@ const Navbar4: FC<Navbar4Props> = ({ navClassName, onePageDemo, social, company 
           <div className="navbar-collapse-wrapper bg-white d-flex flex-row align-items-center justify-content-between">
             {/* ============= left side content ============= */}
             <div className="navbar-other w-100 d-none d-lg-block">
-              <SocialLinksCustom social={social} className="nav social social-muted" />
+              <SocialLinks className="nav social social-muted" />
             </div>
 
             <div
@@ -50,7 +50,7 @@ const Navbar4: FC<Navbar4Props> = ({ navClassName, onePageDemo, social, company 
               id="offcanvas-nav"
             >
               <div className="offcanvas-header d-lg-none">
-                <h3 className="text-white fs-30 mb-0">{company.companyName}</h3>
+                <h3 className="text-white fs-30 mb-0">Angara Lab</h3>
                 <button
                   type="button"
                   aria-label="Close"
@@ -69,7 +69,7 @@ const Navbar4: FC<Navbar4Props> = ({ navClassName, onePageDemo, social, company 
                     <br />
                     <NextLink href="tel:0123456789" title="00 (123) 456 78 90" />
                     <br />
-                    <SocialLinksCustom social={social} />
+                    <SocialLinks />
                   </div>
                 </div>
               </div>

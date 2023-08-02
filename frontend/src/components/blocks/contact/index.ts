@@ -1,4 +1,5 @@
 import Contact1 from './Contact1';
+import Contact1Custom from './Contact1Custom';
 import Contact2 from './Contact2';
 import Contact3 from './Contact3';
 import Contact4 from './Contact4';
@@ -15,6 +16,7 @@ import Contact14 from './Contact14';
 
 export {
   Contact1,
+  Contact1Custom,
   Contact2,
   Contact3,
   Contact4,

@@ -3,7 +3,7 @@ import type { InferGetStaticPropsType, GetStaticProps } from 'next';
 import { Fragment } from 'react';
 // -------- custom component -------- //
 import { Hero3 } from 'components/blocks/hero';
-import { Contact1 } from 'components/blocks/contact';
+import { Contact1, Contact1Custom } from 'components/blocks/contact';
 import { Pricing3, Pricing3Custom } from 'components/blocks/pricing';
 import { Services4Custom } from 'components/blocks/services';
 import { CTA4Custom } from 'components/blocks/call-to-action';
@@ -20,6 +20,7 @@ import { IMediaSet } from 'interfaces/IMediaSet';
 import { Portfolio1Custom360 } from 'components/blocks/portfolio';
 import Navbar4Custom from 'components/blocks/navbar/Navbar4Custom';
 import { IPackageSet } from 'interfaces/IPackageSet';
+import Head from 'next/head';
 
 type Props = {
   port1: IProject;
@@ -55,6 +56,9 @@ const Demo3: NextPage<Props> = (props) => {
   return (
     <Fragment>
       <PageProgress />
+      <Head>
+        <title>Real Estate Photogrpaphy | Angara Lab LLC</title>
+      </Head>
 
       {/* ========== header section ========== */}
       <header className="wrapper bg-dark">
@@ -97,7 +101,7 @@ const Demo3: NextPage<Props> = (props) => {
         <section id="contacts" className="wrapper bg-light angled upper-end lower-start">
           <div className="container py-16 py-md-18 position-relative">
             {/* ========== contact section ========== */}
-            <Contact1 company={company} />
+            <Contact1Custom company={company} />
           </div>
         </section>
       </main>

@@ -4,7 +4,11 @@ import Contact from '../navbar/partials/Contact';
 import FigureImage from 'components/reuseable/FigureImage';
 import { PurpleAttributes } from 'interfaces/ICompany';
 
-const Contact1: FC = () => {
+interface IProps {
+  company: PurpleAttributes;
+}
+
+const Contact1: FC<IProps> = ({ company }) => {
   return (
     <div className="row gy-10 gy-sm-13 gx-lg-3 align-items-center">
       <div className="col-md-8 col-lg-6 position-relative">
@@ -15,7 +19,11 @@ const Contact1: FC = () => {
         />
 
         <figure className="rounded">
-          <img src="/img/photos/abount14@2x.jpg 2x" srcSet="/img/photos/about14@2x.jpg 2x" alt="Angara lab" />
+          <img
+            src={company.companyBackend + company.companyMainPhoto.data.attributes.formats.medium.url}
+            srcSet="/img/photos/about14@2x.jpg 2x"
+            alt={company.companyName}
+          />
         </figure>
       </div>
 
@@ -33,8 +41,8 @@ const Contact1: FC = () => {
           <div>
             <h5 className="mb-1">Address</h5>
             <address>
-              Address, <br className="d-none d-md-block" />
-              State Country
+              {company.companyAddress}, <br className="d-none d-md-block" />
+              {company.companyAddress2}
             </address>
           </div>
         </div>
@@ -47,7 +55,7 @@ const Contact1: FC = () => {
           </div>
           <div>
             <h5 className="mb-1">Phone</h5>
-            <p>111222333</p>
+            <p>{company.companyPhone}</p>
           </div>
         </div>
 
@@ -61,7 +69,7 @@ const Contact1: FC = () => {
             <h5 className="mb-1">E-mail</h5>
             <p className="mb-0">
               <a href="mailto:sandbox@email.com" className="link-body">
-                email
+                {company.companyEmail}
               </a>
             </p>
           </div>

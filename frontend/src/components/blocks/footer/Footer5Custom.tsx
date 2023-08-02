@@ -9,8 +9,8 @@ import { PurpleAttributes } from 'interfaces/ICompany';
 import { ISocialDatum } from 'interfaces/ISocial';
 
 interface IProps {
-  company: PurpleAttributes;
-  social: ISocialDatum[];
+  company?: PurpleAttributes;
+  social?: ISocialDatum[];
 }
 
 const Footer5Custom: FC<IProps> = ({ company, social }) => {
@@ -27,9 +27,11 @@ const Footer5Custom: FC<IProps> = ({ company, social }) => {
                 srcSet="/img/logo-dark@2x3.png 2x"
                 alt="Logo Angara Lab"
               />
-              <p className="lead mb-0">
-                We are {company.companyName}, a team of photographers specializing in Real Estate Photography.
-              </p>
+              {company && (
+                <p className="lead mb-0">
+                  We are {company.companyName}, a team of photographers specializing in Real Estate Photography.
+                </p>
+              )}
             </div>
           </div>
 
@@ -41,11 +43,12 @@ const Footer5Custom: FC<IProps> = ({ company, social }) => {
                     <i className="uil uil-phone-volume" />
                   </div>
                 </div>
-
-                <div>
-                  <h5 className="mb-1">Phone</h5>
-                  <p className="mb-0">{company.companyPhone}</p>
-                </div>
+                {company && (
+                  <div>
+                    <h5 className="mb-1">Phone</h5>
+                    <p className="mb-0">{company.companyPhone}</p>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -58,11 +61,12 @@ const Footer5Custom: FC<IProps> = ({ company, social }) => {
                     <i className="uil uil-location-pin-alt" />
                   </div>
                 </div>
-
-                <div className="align-self-start justify-content-start">
-                  <h5 className="mb-1">Address</h5>
-                  <address>{company.companyAddress + ', ' + company.companyAddress2}</address>
-                </div>
+                {company && (
+                  <div className="align-self-start justify-content-start">
+                    <h5 className="mb-1">Address</h5>
+                    <address>{company.companyAddress + ', ' + company.companyAddress2}</address>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -70,10 +74,12 @@ const Footer5Custom: FC<IProps> = ({ company, social }) => {
 
         <hr className="mt-11 mt-md-12 mb-7" />
         <div className="d-md-flex align-items-center justify-content-between">
-          <p className="mb-2 mb-lg-0">
-            © {year} {company.companyName}. All rights reserved.
-          </p>
-          <SocialLinksCustom social={social} className="nav social social-muted mb-0 text-md-end" />
+          {company && (
+            <p className="mb-2 mb-lg-0">
+              © {year} {company.companyName}. All rights reserved.
+            </p>
+          )}
+          {social && <SocialLinksCustom social={social} className="nav social social-muted mb-0 text-md-end" />}
         </div>
       </div>
     </footer>

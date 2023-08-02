@@ -17,8 +17,8 @@ import { urls } from 'utils/urls';
 type Navbar4Props = {
   navClassName?: string;
   onePageDemo?: boolean;
-  social: ISocialDatum[];
-  company: PurpleAttributes;
+  social?: ISocialDatum[];
+  company?: PurpleAttributes;
   showLogo: boolean;
 };
 export type ILink = { id: number; title: string; to: string; scroll?: boolean };
@@ -63,7 +63,7 @@ const Navbar4Custom: FC<Navbar4Props> = ({ navClassName, onePageDemo, social, co
           <div className="navbar-collapse-wrapper bg-white d-flex flex-row align-items-center justify-content-between">
             {/* ============= left side content ============= */}
             <div className="navbar-other w-100 d-none d-lg-block">
-              <SocialLinksCustom social={social} className="nav social social-muted" />
+              {social && <SocialLinksCustom social={social} className="nav social social-muted" />}{' '}
             </div>
 
             <div
@@ -72,7 +72,7 @@ const Navbar4Custom: FC<Navbar4Props> = ({ navClassName, onePageDemo, social, co
               id="offcanvas-nav"
             >
               <div className="offcanvas-header d-lg-none">
-                <h3 className="text-white fs-30 mb-0">{company.companyName}</h3>
+                {company && <h3 className="text-white fs-30 mb-0">{company.companyName}</h3>}
                 <button
                   type="button"
                   aria-label="Close"
@@ -85,19 +85,21 @@ const Navbar4Custom: FC<Navbar4Props> = ({ navClassName, onePageDemo, social, co
                 {onePageDemo ? <OnePageDemoLinksCustom linkList={linkList} /> : <NavigationsCustom />}
 
                 {/* ============= show contact info in the small device sidebar ============= */}
-                <div className="offcanvas-footer d-lg-none">
-                  <div>
-                    <NextLink
-                      title={company.companyEmail}
-                      className="link-inverse"
-                      href={`mailto:${company.companyEmail}`}
-                    />
-                    <br />
-                    <NextLink href={`tel:${company.companyPhone}`} title={company.companyPhone} />
-                    <br />
-                    <SocialLinksCustom social={social} />
+                {company && social && (
+                  <div className="offcanvas-footer d-lg-none">
+                    <div>
+                      <NextLink
+                        title={company.companyEmail}
+                        className="link-inverse"
+                        href={`mailto:${company.companyEmail}`}
+                      />
+                      <br />
+                      <NextLink href={`tel:${company.companyPhone}`} title={company.companyPhone} />
+                      <br />
+                      <SocialLinksCustom social={social} />
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
 
@@ -133,7 +135,7 @@ const Navbar4Custom: FC<Navbar4Props> = ({ navClassName, onePageDemo, social, co
       </nav>
 
       {/* ============= info sidebar ============= */}
-      <InfoCustom company={company} social={social} linkList={linkList} />
+      {company && social && <InfoCustom company={company} social={social} linkList={linkList} />}
 
       {/* ============= show search box ============= */}
       <Search />
