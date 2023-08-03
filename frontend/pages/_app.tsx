@@ -22,6 +22,7 @@ import 'plugins/scrollcue/scrollCue.css';
 // Bootstrap and custom scss
 import 'assets/scss/style.scss';
 import { store } from 'redux/store';
+import Script from 'next/script';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { pathname } = useRouter();
@@ -88,7 +89,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Real Estate Photography | Angara Lab LLC</title>
       </Head>
-
       <ThemeProvider>
         {/* <div className="page-loader" /> */}
         <Provider store={store}>{loading ? <div className="page-loader" /> : <Component {...pageProps} />}</Provider>

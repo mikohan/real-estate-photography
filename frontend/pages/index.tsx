@@ -21,6 +21,8 @@ import { Portfolio1Custom360 } from 'components/blocks/portfolio';
 import Navbar4Custom from 'components/blocks/navbar/Navbar4Custom';
 import { IPackageSet } from 'interfaces/IPackageSet';
 import Head from 'next/head';
+import { NextSeo } from 'next-seo';
+import Script from 'next/script';
 
 type Props = {
   port1: IProject;
@@ -34,6 +36,13 @@ type Props = {
   pack: IPackageSet;
 };
 
+export const metadata = {
+  title: { default: 'this is open graph title for testing' },
+  openGraph: {
+    title: 'Some new title',
+    description: 'Some description'
+  }
+};
 const Demo3: NextPage<Props> = (props) => {
   // console.log(props.port1.data.attributes.photo.data);
   const imgs1: ProjectDatum[] = props.port1.data.attributes.photo!.data;
@@ -55,10 +64,48 @@ const Demo3: NextPage<Props> = (props) => {
   const serviceVideo: string = props.video.data.attributes.title;
   return (
     <Fragment>
-      <PageProgress />
-      <Head>
+      <NextSeo
+        title="Your Title"
+        description="This is a demo description"
+        canonical="https://www.example.com"
+        openGraph={{
+          url: 'https://www.example.com',
+          title: 'Open Graph Title',
+          description: 'Open Graph Description',
+          images: [
+            {
+              url: 'https://www.example.com/og-image01.jpg',
+              width: 800,
+              height: 600,
+              alt: 'Og Image Alt',
+              type: 'image/jpeg'
+            },
+            {
+              url: 'https://www.example.com/og-image02.jpg',
+              width: 900,
+              height: 800,
+              alt: 'Og Image Alt Second',
+              type: 'image/jpeg'
+            },
+            { url: 'https://www.example.com/og-image03.jpg' },
+            { url: 'https://www.example.com/og-image04.jpg' }
+          ],
+          site_name: 'YourSiteName'
+        }}
+        twitter={{
+          handle: '@handle',
+          site: '@site',
+          cardType: 'summary_large_image'
+        }}
+      />
+      {/* <Head>
         <title>Real Estate Photogrpaphy | Angara Lab LLC</title>
-      </Head>
+        <meta
+          name="description"
+          content="Schedule the shoot, and we will handle the rest. High resolution photography, aerial photography, virtual tours and more, made easy."
+        />
+      </Head> */}
+      <PageProgress />
 
       {/* ========== header section ========== */}
       <header className="wrapper bg-dark">
