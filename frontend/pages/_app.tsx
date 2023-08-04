@@ -4,6 +4,7 @@ import type { AppProps } from 'next/app';
 import { Fragment, useEffect, useState } from 'react';
 import ThemeProvider from 'theme/ThemeProvider';
 import { Provider } from 'react-redux';
+import NextNProgress from 'nextjs-progressbar';
 
 // animate css
 import 'animate.css';
@@ -90,8 +91,10 @@ function MyApp({ Component, pageProps }: AppProps) {
         <title>Real Estate Photography | Angara Lab LLC</title>
       </Head>
       <ThemeProvider>
+        <NextNProgress />
         {/* <div className="page-loader" /> */}
-        <Provider store={store}>{loading ? <div className="page-loader" /> : <Component {...pageProps} />}</Provider>
+        {/* {loading ? <div className="page-loader" /> :  */}
+        <Component {...pageProps} />
       </ThemeProvider>
     </Fragment>
   );

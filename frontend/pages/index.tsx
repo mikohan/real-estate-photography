@@ -23,6 +23,7 @@ import { IPackageSet } from 'interfaces/IPackageSet';
 import Head from 'next/head';
 import { NextSeo } from 'next-seo';
 import Script from 'next/script';
+import { BACKEND_IMG_URL, HOST_URL, companyInfo } from 'config';
 
 type Props = {
   port1: IProject;
@@ -36,13 +37,6 @@ type Props = {
   pack: IPackageSet;
 };
 
-export const metadata = {
-  title: { default: 'this is open graph title for testing' },
-  openGraph: {
-    title: 'Some new title',
-    description: 'Some description'
-  }
-};
 const Demo3: NextPage<Props> = (props) => {
   // console.log(props.port1.data.attributes.photo.data);
   const imgs1: ProjectDatum[] = props.port1.data.attributes.photo!.data;
@@ -62,35 +56,39 @@ const Demo3: NextPage<Props> = (props) => {
   const serviceRE: string = props.port1.data.attributes.title;
   const serviceDrone: string = props.drone.data.attributes.title;
   const serviceVideo: string = props.video.data.attributes.title;
+
+  const title = 'Real Estate Photogrpaphy | Angara Lab LLC';
+  const description =
+    'Schedule the shoot, and we will handle the rest. High resolution photography, aerial photography, virtual tours and more, made easy.';
   return (
     <Fragment>
       <NextSeo
-        title="Your Title"
-        description="This is a demo description"
-        canonical="https://www.example.com"
+        title={title}
+        description={description}
+        canonical={HOST_URL}
         openGraph={{
-          url: 'https://www.example.com',
-          title: 'Open Graph Title',
-          description: 'Open Graph Description',
+          url: HOST_URL,
+          title,
+          description,
           images: [
             {
-              url: 'https://www.example.com/og-image01.jpg',
+              url: BACKEND_IMG_URL + 'og-image01.jpg',
               width: 800,
               height: 600,
-              alt: 'Og Image Alt',
+              alt: 'Angara Lab LLC First Image',
               type: 'image/jpeg'
             },
             {
-              url: 'https://www.example.com/og-image02.jpg',
+              url: BACKEND_IMG_URL + 'og-image02.jpg',
               width: 900,
               height: 800,
-              alt: 'Og Image Alt Second',
+              alt: 'Angara Lab LLC Second Image',
               type: 'image/jpeg'
             },
-            { url: 'https://www.example.com/og-image03.jpg' },
-            { url: 'https://www.example.com/og-image04.jpg' }
+            { url: BACKEND_IMG_URL + 'og-image03.jpg' },
+            { url: BACKEND_IMG_URL + 'og-image04.jpg' }
           ],
-          site_name: 'YourSiteName'
+          site_name: companyInfo.companyName
         }}
         twitter={{
           handle: '@handle',
@@ -98,13 +96,6 @@ const Demo3: NextPage<Props> = (props) => {
           cardType: 'summary_large_image'
         }}
       />
-      {/* <Head>
-        <title>Real Estate Photogrpaphy | Angara Lab LLC</title>
-        <meta
-          name="description"
-          content="Schedule the shoot, and we will handle the rest. High resolution photography, aerial photography, virtual tours and more, made easy."
-        />
-      </Head> */}
       <PageProgress />
 
       {/* ========== header section ========== */}
