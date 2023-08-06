@@ -72,9 +72,9 @@ const Demo3: NextPage<Props> = (props) => {
           description,
           images: [
             {
-              url: BACKEND_IMG_URL + 'og-image01.jpg',
-              width: 800,
-              height: 600,
+              url: BACKEND_IMG_URL + 'rose1200.jpg',
+              width: 1200,
+              height: 800,
               alt: 'Angara Lab LLC First Image',
               type: 'image/jpeg'
             },
