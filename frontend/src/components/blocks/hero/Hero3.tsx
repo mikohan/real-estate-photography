@@ -57,7 +57,7 @@ const Hero3: FC = () => {
             <div className="position-relative" style={slideInDownAnimate('0ms')}>
               <a
                 data-glightbox
-                href="/media/movie.mp4"
+                href="/media/intro1.mov"
                 className="btn btn-circle btn-primary btn-play ripple mx-auto mb-6 position-absolute"
                 style={{ top: '50%', left: '50%', transform: 'translate(-50%,-50%)', zIndex: 3 }}
               >
@@ -65,7 +65,7 @@ const Hero3: FC = () => {
               </a>
 
               <figure className="rounded shadow-lg">
-                <img src="/img/photos/about13.jpg" srcSet="/img/photos/about13@2x.jpg 2x" alt="hero" />
+                <img src="/img/photos/about13-2.jpg" srcSet="/img/photos/about13-2@2x.jpg 2x" alt="hero" />
               </figure>
             </div>
           </div>
