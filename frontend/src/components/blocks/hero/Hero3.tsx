@@ -63,7 +63,6 @@ const Hero3: FC = () => {
               >
                 <i className="icn-caret-right" />
               </a>
-
               <figure className="rounded shadow-lg">
                 <img src="/img/photos/about13-2.jpg" srcSet="/img/photos/about13-2@2x.jpg 2x" alt="hero" />
               </figure>
