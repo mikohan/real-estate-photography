@@ -30,6 +30,7 @@ const Portfolio8Videos: FC<IProps> = ({ projectVideos, serviceTitle }) => {
                 <figure className="lift rounded mb-6">
                   <Plyr
                     options={{ loadSprite: true, clickToPlay: true }}
+                    poster="/img/photos/thumb.png"
                     source={{
                       type: 'video',
                       sources: [{ src: companyInfo.backendUrl + item.attributes.url, provider: 'html5' }]

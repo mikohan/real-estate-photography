@@ -2,26 +2,27 @@ import { FC } from 'react';
 // -------- icons -------- //
 import Verify from 'icons/solid-mono/Verify';
 import PushCart from 'icons/solid-mono/PushCart';
-import Shipment from 'icons/solid-mono/Shipment';
+import Wallet from 'icons/solid-mono/Wallet';
+import Shipping from 'icons/solid-mono/Shipment';
 // -------- data -------- //
 const services = [
   {
     id: 1,
-    Icon: Shipment,
-    title: 'Free Shipping',
-    description: 'Duis mollis gravida commodo id luctus erat porttitor ligula, eget lacinia odio sem.'
+    Icon: Wallet,
+    title: 'We have good pricing',
+    description: 'We offer a simple pricing'
   },
   {
     id: 2,
     Icon: PushCart,
-    title: '30 Days Return',
-    description: 'Duis mollis gravida commodo id luctus erat porttitor ligula, eget lacinia odio sem.'
+    title: 'Fast material delivery',
+    description: 'We often deliver all materials within 24 hours. We can deliver it faster upon request'
   },
   {
     id: 3,
     Icon: Verify,
-    title: '2-Years Warranty',
-    description: 'Duis mollis gravida commodo id luctus erat porttitor ligula, eget lacinia odio sem.'
+    title: 'No copyright claims',
+    description: 'All materials is yours, you can use whatever way you want.'
   }
 ];
 
@@ -34,7 +35,7 @@ const ShopService: FC = () => {
             <div className="col-md-6 col-lg-4" key={id}>
               <div className="d-flex flex-row">
                 <div>
-                  <Icon />
+                  <Icon className="text-primary" />
                 </div>
 
                 <div>
