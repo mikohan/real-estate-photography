@@ -18,8 +18,8 @@ const Portfolio8Videos: FC<IProps> = ({ projectVideos, serviceTitle }) => {
       <div className="container">
         <div className="row mb-8 text-center">
           <div className="col-lg-9 col-xl-8 col-xxl-7 mx-auto">
-            <h2 className="fs-16 text-uppercase text-primary mb-3">Real Estate Videos</h2>
-            <h3 className="display-4">Check out some of our awesome projects with creative ideas and great design.</h3>
+            <h2 className="fs-16 text-uppercase text-primary mb-3">{serviceTitle}</h2>
+            <h3 className="display-4">Check out some of {serviceTitle}.</h3>
           </div>
         </div>
 

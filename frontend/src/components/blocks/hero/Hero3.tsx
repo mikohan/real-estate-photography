@@ -57,7 +57,7 @@ const Hero3: FC = () => {
             <div className="position-relative" style={slideInDownAnimate('0ms')}>
               <a
                 data-glightbox
-                href="/media/intro1.mov"
+                href="/media/intro1.mp4"
                 className="btn btn-circle btn-primary btn-play ripple mx-auto mb-6 position-absolute"
                 style={{ top: '50%', left: '50%', transform: 'translate(-50%,-50%)', zIndex: 3 }}
               >
