@@ -1,8 +1,7 @@
 module.exports = [
   "strapi::errors",
   "strapi::security",
-  "strapi::cors",
-  "strapi::poweredBy",
+  //"strapi::cors",
   {
     name: "strapi::cors",
     config: {
@@ -11,6 +10,7 @@ module.exports = [
       origin: ["http://localhost:1337", "http://angaramedia.site"],
     },
   },
+  "strapi::poweredBy",
   "strapi::logger",
   "strapi::query",
   "strapi::body",
