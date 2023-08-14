@@ -48,12 +48,12 @@ const ShopTwo: NextPage<Props> = (props) => {
   const social: ISocialDatum[] = props.social.data;
   const prices: IPriceDatum[] = props.price!.data;
   const pack: IPackage = props.pack;
-  const src = BACKEND_IMG_URL + pack.data.attributes.image.data.attributes.url;
-  const alt = pack.data.attributes.image.data.attributes.alternativeText;
+  //const src = BACKEND_IMG_URL + pack.data.attributes.image.data.attributes.url;
+  //const alt = pack.data.attributes.image.data.attributes.alternativeText;
   // data.attributes.image.data.attributes.formats.large.height
-  const height = pack.data.attributes.image.data.attributes.formats.large.height;
-  const width = pack.data.attributes.image.data.attributes.formats.large.width;
-  const title = pack.data.attributes.name;
+  //const height = pack.data.attributes.image.data.attributes.formats.large.height;
+  //const width = pack.data.attributes.image.data.attributes.formats.large.width;
+  //const title = pack.data.attributes.name;
   const options = pack.data.attributes.prices;
   const packPrice = pack.data.attributes.value;
   // Array of ids for package pricing
@@ -66,7 +66,7 @@ const ShopTwo: NextPage<Props> = (props) => {
   idArr = grandTotal.map((item: IGrandTotal) => item.id);
   const totArr = grandTotal.map((item: IGrandTotal) => item.price);
   let totSum: number = 0;
-  if (pack.data.attributes.value) {
+  if (pack && pack.data.attributes.value) {
     totSum = pack.data.attributes.value;
     totArr.push(totSum);
   }
@@ -233,11 +233,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const package_res = await fetch('http://localhost:1337/api/package-sets');
   const packages: IPackageSet = await package_res.json();
   const idList = packages.data.map((item: IPackageSetDatum) => item.id);
+  console.log(idList);
   const paths: string[] = [];
   idList.forEach((id: number) => {
     paths.push(`/prices/${id}`);
   });
-  return { paths, fallback: true };
+  return { paths, fallback: false };
 };
 
 export const getStaticProps: GetStaticProps = async (context: any) => {
