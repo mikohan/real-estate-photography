@@ -2,7 +2,8 @@ import { FC } from 'react';
 import dynamic from 'next/dynamic';
 import React, { useEffect, useRef } from 'react';
 import { IMediaSet } from 'interfaces/IMediaSet';
-
+import { BACKEND_IMG_URL } from 'config';
+// import { ReactPhotoSphereViewer } from 'react-photo-sphere-viewer';
 const ReactPhotoSphereViewer = dynamic(
   () => import('react-photo-sphere-viewer').then((mod) => mod.ReactPhotoSphereViewer),
   {
@@ -39,7 +40,7 @@ const Portfolio1Custom360: FC<PropsInterface> = ({ projectImages }) => {
                   <div id="some" className="row">
                     <ReactPhotoSphereViewer
                       container={'some'}
-                      src={`http://localhost:1337${item.attributes.url}`}
+                      src={`${BACKEND_IMG_URL}${item.attributes.url}`}
                       height={'30vh'}
                       width={'100%'}
                     ></ReactPhotoSphereViewer>

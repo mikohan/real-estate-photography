@@ -347,10 +347,10 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   // Url section end
 
   //Company fetching starts here
-  const comp_res = await fetch('http://localhost:1337/api/company?populate=companyMainPhoto');
+  const comp_res = await fetch(BACKEND_API_URL + 'company?populate=companyMainPhoto');
   const company: ICompany = await comp_res.json();
 
-  const social_res = await fetch('http://localhost:1337/api/social-medias');
+  const social_res = await fetch(BACKEND_API_URL + 'social-medias');
   const social: ISocial = await social_res.json();
   // Getting panorama data
 

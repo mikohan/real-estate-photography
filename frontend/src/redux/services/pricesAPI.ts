@@ -1,11 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { BACKEND_API_URL } from 'config';
 import { IPrice } from 'interfaces/IPrice';
 
 export const pricesApi = createApi({
   reducerPath: 'pricesApi',
   refetchOnFocus: true,
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:1337/api/'
+    baseUrl: BACKEND_API_URL
   }),
   endpoints: (builder) => ({
     getPrices: builder.query<IPrice[], null>({

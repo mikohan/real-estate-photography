@@ -23,6 +23,7 @@ import { urls } from 'utils/urls';
 import { IPackageSet, IPackageSetDatum } from 'interfaces/IPackageSet';
 import Link from 'next/link';
 import { IGrandTotal } from 'interfaces/IListing';
+import { BACKEND_API_URL } from 'config';
 
 const breadcrumb = [
   { id: 1, title: 'Home', url: urls.home() },
@@ -165,17 +166,16 @@ const ShopTwo: NextPage<Props> = (props) => {
 export async function getStaticProps<GetStaticProps>(context: GetStaticPropsContext) {
   const id = context.params && context.params.id;
   //Prices fetching starts here
-  const price_res = await fetch('http://localhost:1337/api/prices?populate=*');
+  const price_res = await fetch(BACKEND_API_URL + 'prices?populate=*');
   const price: IPrice = await price_res.json();
 
   //Company fetching starts here
-  const comp_res = await fetch('http://localhost:1337/api/company?populate=companyMainPhoto');
+  const comp_res = await fetch(BACKEND_API_URL + 'company?populate=companyMainPhoto');
   const company: ICompany = await comp_res.json();
 
-  const social_res = await fetch('http://localhost:1337/api/social-medias');
+  const social_res = await fetch(BACKEND_API_URL + 'social-medias');
   const social: ISocial = await social_res.json();
-  //http://localhost:1337/api/package-sets?populate=*
-  const package_res = await fetch('http://localhost:1337/api/package-sets?populate=*');
+  const package_res = await fetch(BACKEND_API_URL + 'package-sets?populate=*');
   const packages: IPackageSet = await package_res.json();
 
   return {

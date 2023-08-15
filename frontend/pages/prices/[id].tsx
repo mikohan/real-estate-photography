@@ -230,7 +230,7 @@ const ShopTwo: NextPage<Props> = (props) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const package_res = await fetch('http://localhost:1337/api/package-sets');
+  const package_res = await fetch(BACKEND_API_URL + 'package-sets');
   const packages: IPackageSet = await package_res.json();
   const idList = packages.data.map((item: IPackageSetDatum) => item.id);
   console.log(idList);
@@ -244,11 +244,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context: any) => {
   const id = context.params.id;
 
-  const package_res = await fetch(`http://localhost:1337/api/package-sets/${id}?populate=*`);
+  const package_res = await fetch(`${BACKEND_API_URL}package-sets/${id}?populate=*`);
   const pack: IPackage = await package_res.json();
   const options = pack.data.attributes.prices.data;
 
-  let quryUrl = 'http://localhost:1337/api/prices?populate=*&';
+  let quryUrl = BACKEND_API_URL + 'prices?populate=*&';
   const packageInclude = options.forEach((item, i) => {
     // &filters[id][$notIn][1]=2
     quryUrl += `filters[id][$notIn][${i}]=${item.id}&`;
@@ -261,10 +261,10 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
   const price: IPrice = await price_res.json();
 
   //Company fetching starts here
-  const comp_res = await fetch('http://localhost:1337/api/company?populate=companyMainPhoto');
+  const comp_res = await fetch(BACKEND_API_URL + 'company?populate=companyMainPhoto');
   const company: ICompany = await comp_res.json();
 
-  const social_res = await fetch('http://localhost:1337/api/social-medias');
+  const social_res = await fetch(BACKEND_API_URL + 'social-medias');
   const social: ISocial = await social_res.json();
   //http://localhost:1337/api/package-sets?populate=*
 

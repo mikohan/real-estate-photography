@@ -23,7 +23,7 @@ import { IPackageSet } from 'interfaces/IPackageSet';
 import Head from 'next/head';
 import { NextSeo } from 'next-seo';
 import Script from 'next/script';
-import { BACKEND_IMG_URL, HOST_URL, companyInfo } from 'config';
+import { BACKEND_API_URL, BACKEND_IMG_URL, HOST_URL, companyInfo } from 'config';
 
 type Props = {
   port1: IProject;
@@ -153,36 +153,36 @@ const Demo3: NextPage<Props> = (props) => {
 export async function getStaticProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
-  const res1 = await fetch('http://localhost:1337/api/projects/1?populate=photo&populate=images');
+  const res1 = await fetch(BACKEND_API_URL + 'projects/1?populate=photo&populate=images');
   const port1: IProject = await res1.json();
 
-  const res_drone = await fetch('http://localhost:1337/api/projects/2?populate=photo&populate=images');
+  const res_drone = await fetch(BACKEND_API_URL + 'projects/2?populate=photo&populate=images');
   const drone: IProject = await res_drone.json();
 
-  const res_video = await fetch('http://localhost:1337/api/projects/3/?populate=photo&populate=video');
+  const res_video = await fetch(BACKEND_API_URL + 'projects/3/?populate=photo&populate=video');
   const video: IProject = await res_video.json();
 
   //Services fetching starts here
-  const res2 = await fetch('http://localhost:1337/api/services/?populate=photo&populate=image');
+  const res2 = await fetch(BACKEND_API_URL + 'services/?populate=photo&populate=image');
   const services: IService = await res2.json();
 
   //Prices fetching starts here
-  const price_res = await fetch('http://localhost:1337/api/prices?populate=thumbnail');
+  const price_res = await fetch(BACKEND_API_URL + 'prices?populate=thumbnail');
   const price: IPrice = await price_res.json();
 
   //Company fetching starts here
-  const comp_res = await fetch('http://localhost:1337/api/company?populate=companyMainPhoto');
+  const comp_res = await fetch(BACKEND_API_URL + 'company?populate=companyMainPhoto');
   const company: ICompany = await comp_res.json();
 
-  const social_res = await fetch('http://localhost:1337/api/social-medias');
+  const social_res = await fetch(BACKEND_API_URL + 'social-medias');
   const social: ISocial = await social_res.json();
   // Getting panorama data
 
-  const panorama_res = await fetch('http://localhost:1337/api/images/1?populate=media');
+  const panorama_res = await fetch(BACKEND_API_URL + 'images/1?populate=media');
   const panorama: IMediaSet = await panorama_res.json();
   // Packages
 
-  const package_res = await fetch(`http://localhost:1337/api/package-sets?populate=*`);
+  const package_res = await fetch(`${BACKEND_API_URL}package-sets?populate=*`);
   const pack: IPackageSet = await package_res.json();
   // By returning { props: { posts } }, the Blog component
   // will receive `posts` as a prop at build time
