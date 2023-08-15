@@ -38,7 +38,6 @@ type Props = {
 };
 
 const Demo3: NextPage<Props> = (props) => {
-  // console.log(props.port1.data.attributes.photo.data);
   const imgs1: ProjectDatum[] = props.port1.data.attributes.photo!.data;
   const serv: Datum[] = props.services.data;
   const drone_img: ProjectDatum[] = props.drone.data.attributes.photo!.data;

@@ -17,6 +17,5 @@ export const pricesApi = createApi({
     })
   })
 });
-console.log(process.env.BACKEND_API_URL);
 
 export const { useGetPricesQuery, useGetPriceByIdQuery } = pricesApi;

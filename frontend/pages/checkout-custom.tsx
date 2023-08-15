@@ -63,7 +63,6 @@ const Checkout: NextPage<Props> = (props) => {
       });
     });
   }
-  console.log(products);
   // Controlled form starts here
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -115,7 +114,6 @@ const Checkout: NextPage<Props> = (props) => {
     zip,
     total
   };
-  console.log({ products, formData });
 
   const stripePromise = loadStripe(
     'pk_test_51NYAAsAOIjwuKYKnueiGoMSbBJqPX1S9C9hKfnFuogivf32dbKPb1mSnS6F7rvOgbi60aaKBNCmV5ZRpmPhz3gzz00Xj395Ekh'

@@ -10,7 +10,6 @@ const RegisterForm: FC = () => {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(email, password);
   };
 
   return (

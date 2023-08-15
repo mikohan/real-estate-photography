@@ -34,7 +34,6 @@ const Test: FC = () => {
     };
     fetchData();
   }, [checkList]);
-  console.log(checkList);
 
   return (
     <div>

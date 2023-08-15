@@ -76,7 +76,6 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
       });
       return { stripeSession: session };
     } catch (error) {
-      console.log("In catch error", error);
       ctx.response.status = 500;
       return { error };
     }

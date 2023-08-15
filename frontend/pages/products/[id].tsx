@@ -27,7 +27,6 @@ const ProductDetails: NextPage = () => {
 
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(quantity, color, size);
   };
 
   const carouselBreakpoints = { 0: { slidesPerView: 1 }, 768: { slidesPerView: 2 }, 992: { slidesPerView: 3 } };
