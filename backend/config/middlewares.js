@@ -9,6 +9,8 @@ module.exports = [
       //    origin: ["*"],
       origin: [
         "http://localhost:1337",
+        "http://localhost:3001",
+        "http://localhost",
         "http://angaramedia.site",
         "http://api.angaramedia.site",
       ],
