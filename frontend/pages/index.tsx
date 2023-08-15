@@ -56,7 +56,7 @@ const Demo3: NextPage<Props> = (props) => {
   const serviceDrone: string = props.drone.data.attributes.title;
   const serviceVideo: string = props.video.data.attributes.title;
   console.log('url', HOST_URL + '/img/rose1200.jpg');
-  console.log('url', HOST_URL + '/img/custom/pool-text.jpg');
+  console.log('url', HOST_URL + '/img/custom/pool-text.webp');
   const ogImage = HOST_URL + '/img/custom/pool-text.jpg';
   const ogImage2 = HOST_URL + '/img/custom/lighthouse.jpg';
   const ogImage3 = HOST_URL + '/img/custom/pool-text.jpg';
