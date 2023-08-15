@@ -21,7 +21,7 @@ const Contact1: FC<IProps> = ({ company }) => {
 
         <figure className="rounded">
           <img
-            src={BACKEND_IMG_URL + company.companyMainPhoto.data.attributes.formats.medium.url}
+            src={BACKEND_IMG_URL + company.companyMainPhoto.data.attributes.formats.large.url}
             srcSet="/img/photos/about14@2x.jpg 2x"
             alt={company.companyName}
           />

@@ -233,7 +233,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const package_res = await fetch(BACKEND_API_URL + 'package-sets');
   const packages: IPackageSet = await package_res.json();
   const idList = packages.data.map((item: IPackageSetDatum) => item.id);
-  console.log(idList);
   const paths: string[] = [];
   idList.forEach((id: number) => {
     paths.push(`/prices/${id}`);
