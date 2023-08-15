@@ -22,7 +22,6 @@ import 'glightbox/dist/css/glightbox.css';
 import 'plugins/scrollcue/scrollCue.css';
 // Bootstrap and custom scss
 import 'assets/scss/style.scss';
-import { store } from 'redux/store';
 import Script from 'next/script';
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -90,6 +89,21 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Real Estate Photography | Angara Lab LLC</title>
       </Head>
+      <Script
+        id="google-analytics"
+        strategy="afterInteractive"
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-7F6P5QPRYN"
+      />
+      <Script id="google-analytics-second" strategy="afterInteractive" async>
+        {`
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7F6P5QPRYN');
+  `}
+      </Script>
       <ThemeProvider>
         <NextNProgress />
         {/* <div className="page-loader" /> */}
