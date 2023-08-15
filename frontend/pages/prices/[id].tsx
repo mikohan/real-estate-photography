@@ -146,6 +146,7 @@ const ShopTwo: NextPage<Props> = (props) => {
               <h1 className="mt-4 mb-4">
                 Your package is {pack.data.attributes.name}. Package price is ${pack.data.attributes.value}
               </h1>
+              <h5>Total: ${totSum}</h5>
             </div>
           </div>
           <div className="row">
