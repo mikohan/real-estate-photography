@@ -3,6 +3,7 @@ import { slideInDownAnimate } from 'utils/animation';
 import Contact from '../navbar/partials/Contact';
 import FigureImage from 'components/reuseable/FigureImage';
 import { PurpleAttributes } from 'interfaces/ICompany';
+import { BACKEND_IMG_URL } from 'config';
 
 interface IProps {
   company: PurpleAttributes;
@@ -20,7 +21,7 @@ const Contact1: FC<IProps> = ({ company }) => {
 
         <figure className="rounded">
           <img
-            src={company.companyBackend + company.companyMainPhoto.data.attributes.formats.medium.url}
+            src={BACKEND_IMG_URL + company.companyMainPhoto.data.attributes.formats.medium.url}
             srcSet="/img/photos/about14@2x.jpg 2x"
             alt={company.companyName}
           />
