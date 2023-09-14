@@ -103,6 +103,13 @@ function MyApp({ Component, pageProps }: AppProps) {
             gtag('config', 'G-7F6P5QPRYN');
           `}
       </Script>
+      <Script id="phone-number" strategy="afterInteractive" async>
+        {`
+            gtag('config', 'AW-11163209587/_JsmCK25xeEYEPOehMsp', {
+            'phone_conversion_number': '9512244109'
+            });
+          `}
+      </Script>
       <ThemeProvider>
         <NextNProgress />
         {/* <div className="page-loader" /> */}
