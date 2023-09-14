@@ -57,7 +57,7 @@ const Demo3: NextPage<Props> = (props) => {
   const serviceVideo: string = props.video.data.attributes.title;
   console.log('url', HOST_URL + '/img/rose1200.jpg');
   console.log('url', HOST_URL + '/img/custom/pool-text.webp');
-  const ogImage = HOST_URL + '/img/custom/pool-text.jpg';
+  const ogImage = HOST_URL + '/img/custom/pool-text.webp';
   const ogImage2 = HOST_URL + '/img/custom/lighthouse.jpg';
   const ogImage3 = HOST_URL + '/img/custom/pool-text.jpg';
   const ogImage4 = HOST_URL + '/img/rose1200.jpg';
@@ -81,7 +81,7 @@ const Demo3: NextPage<Props> = (props) => {
               width: 1200,
               height: 800,
               alt: 'Angara Lab LLC First Image',
-              type: 'image/jpeg'
+              type: 'image/webp'
             },
             {
               url: ogImage2,

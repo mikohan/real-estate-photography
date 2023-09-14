@@ -97,12 +97,11 @@ function MyApp({ Component, pageProps }: AppProps) {
       />
       <Script id="google-analytics-second" strategy="afterInteractive" async>
         {`
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-7F6P5QPRYN');
-  `}
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-7F6P5QPRYN');
+          `}
       </Script>
       <ThemeProvider>
         <NextNProgress />
