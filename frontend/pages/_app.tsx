@@ -89,27 +89,29 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Real Estate Photography | Angara Lab LLC</title>
       </Head>
-      <Script
-        id="google-analytics"
-        strategy="afterInteractive"
+      <script id="google-analytics" async src="https://www.googletagmanager.com/gtag/js?id=G-7F6P5QPRYN" />
+      <script
+        id="google-analytics-second"
         async
-        src="https://www.googletagmanager.com/gtag/js?id=G-7F6P5QPRYN"
-      />
-      <Script id="google-analytics-second" strategy="afterInteractive" async>
-        {`
+        dangerouslySetInnerHTML={{
+          __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'G-7F6P5QPRYN');
-          `}
-      </Script>
-      <Script id="phone-number" strategy="afterInteractive" async>
-        {`
+          `
+        }}
+      />
+      <script
+        id="phone-number"
+        dangerouslySetInnerHTML={{
+          __html: `
             gtag('config', 'AW-11163209587/_JsmCK25xeEYEPOehMsp', {
             'phone_conversion_number': '9512244109'
             });
-          `}
-      </Script>
+          `
+        }}
+      />
       <ThemeProvider>
         <NextNProgress />
         {/* <div className="page-loader" /> */}
