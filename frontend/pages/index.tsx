@@ -78,6 +78,7 @@ const Demo3: NextPage<Props> = (props) => {
           images: [
             {
               url: ogImage,
+              secureUrl: ogImage,
               width: 1200,
               height: 800,
               alt: 'Angara Lab LLC First Image',
@@ -85,13 +86,14 @@ const Demo3: NextPage<Props> = (props) => {
             },
             {
               url: ogImage2,
+              secureUrl: ogImage2,
               width: 900,
               height: 800,
               alt: 'Angara Lab LLC Second Image',
               type: 'image/jpeg'
             },
-            { url: ogImage3 },
-            { url: ogImage4 }
+            { url: ogImage3, secureUrl: ogImage3 },
+            { url: ogImage4, secureUrl: ogImage4 }
           ],
           site_name: companyInfo.companyName
         }}
