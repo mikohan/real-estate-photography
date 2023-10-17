@@ -55,12 +55,10 @@ const Demo3: NextPage<Props> = (props) => {
   const serviceRE: string = props.port1.data.attributes.title;
   const serviceDrone: string = props.drone.data.attributes.title;
   const serviceVideo: string = props.video.data.attributes.title;
-  console.log('url', HOST_URL + '/img/rose1200.jpg');
-  console.log('url', HOST_URL + '/img/custom/pool-text.webp');
   const ogImage = HOST_URL + '/img/custom/pool-text.jpg';
   const ogImage2 = HOST_URL + '/img/custom/lighthouse.jpg';
   const ogImage3 = HOST_URL + '/img/custom/pool-text.jpg';
-  const ogImage4 = HOST_URL + '/img/house_st2.jpg';
+  const ogImage4 = HOST_URL + '/img/custom/house_st2.jpg';
 
   const title = 'Real Estate Photogrpaphy | Angara Lab LLC';
   const description =
@@ -80,7 +78,7 @@ const Demo3: NextPage<Props> = (props) => {
               url: ogImage,
               secureUrl: ogImage,
               width: 1200,
-              height: 800,
+              height: 630,
               alt: 'Angara Lab LLC First Image',
               type: 'image/jpeg'
             },
