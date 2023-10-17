@@ -60,7 +60,7 @@ const Demo3: NextPage<Props> = (props) => {
   const ogImage = HOST_URL + '/img/custom/pool-text.webp';
   const ogImage2 = HOST_URL + '/img/custom/lighthouse.jpg';
   const ogImage3 = HOST_URL + '/img/custom/pool-text.jpg';
-  const ogImage4 = HOST_URL + '/img/rose1200.jpg';
+  const ogImage4 = HOST_URL + '/img/house_st2.jpg';
 
   const title = 'Real Estate Photogrpaphy | Angara Lab LLC';
   const description =
